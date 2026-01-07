@@ -7,7 +7,7 @@ export default function Header() {
 
         <a className="navbar-brand" href="/">
           <img
-            src="src/assets/logo.png"
+            src="public/logo.png"
             alt="Radio Top 2000 Logo"
             style={{ maxWidth: "120px", height: "40px" }}
             className="d-inline-block align-text-top"
