@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Contact from "@/pages/contact.jsx";
-import Login from "@/pages/login.jsx";
-import Geschiedenis from "@/pages/geschiedenis.jsx";
-import Registratie from "@/pages/registratie.jsx";
-import Statistieken from "@/pages/statistieken.jsx";
+import Contact from "@/pages/Contact.jsx";
+import Login from "@/pages/Login.jsx";
+import Geschiedenis from "@/pages/Geschiedenis.jsx";
+import Registratie from "@/pages/Registratie.jsx";
+import Statistieken from "@/pages/Statistieken.jsx";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -12,11 +12,8 @@ import Layout from "@/layout/Layout.jsx";
 
 const App = () => {
   return (
-    <BrowserRouter>
-
-    
+    <BrowserRouter>    
         <Routes>
-            {/* temp */}
             <Route path="/*" element={<Layout />} >
                 <Route index element={<Home />} />
                 <Route path="contact" element={<Contact />} />
