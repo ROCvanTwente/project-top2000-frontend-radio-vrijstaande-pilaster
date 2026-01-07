@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1920 90">
+	<mask id="radio-2-header-decoration-a" width="1271" height="1271" x="-262" y="-942" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+		<path fill="#fff" d="M1009-942H-262V329h1271V-942Z"/>
+	</mask>
+	<g mask="url(#radio-2-header-decoration-a)">
+		<path fill="url(#radio-2-header-decoration-b)" d="M271.38 286.7A143.44 143.44 0 0 0 373.5 329c38.59 0 74.86-15.01 102.13-42.3l412.55-412.69a143.46 143.46 0 0 0 42.3-102.1c0-27-7.36-52.86-21.13-75.3l-511.7 511.62a33.59 33.59 0 0 1-23.87 9.89 33.6 33.6 0 0 1-23.88-9.89l.02-.04-491.08-491a143.45 143.45 0 0 1-42.3-102.09c.01-38.57 15.03-74.82 42.3-102.1l-78.53 78.53a143.33 143.33 0 0 0-42.2 96.34c-1.58 40.8 14.64 80.28 43.51 109.15L271.38 286.7Z" opacity=".5"/>
+	</g>
+	<mask id="radio-2-header-decoration-c" width="1271" height="1271" x="911" y="-240" maskUnits="userSpaceOnUse" style="mask-type:luminance">
+		<path fill="#fff" d="M2182-240H911v1271h1271V-240Z"/>
+	</mask>
+	<g mask="url(#radio-2-header-decoration-c)">
+		<path fill="url(#radio-2-header-decoration-d)" d="M1648.61-197.7a143.42 143.42 0 0 0-102.1-42.3 143.44 143.44 0 0 0-102.13 42.3L1031.83 215a143.44 143.44 0 0 0-42.3 102.1c0 26.8 7.25 52.49 20.83 74.81.15.25.5.29.7.09l511.3-511.23a33.6 33.6 0 0 1 23.87-9.89c9.03 0 17.5 3.52 23.88 9.89l-.02.04 491.08 491a143.42 143.42 0 0 1 42.3 102.09c0 38.57-15.02 74.82-42.3 102.1l78.53-78.53a143.3 143.3 0 0 0 42.19-96.35c1.59-40.8-14.63-80.28-43.51-109.15L1648.61-197.7Z"/>
+	</g>
+	<path fill="url(#radio-2-header-decoration-e)" d="M938.19-551 363.39 23.77a30 30 0 0 0 0 42.43l574.8 574.8a30 30 0 0 0 42.42 0L1555.4 66.2a30 30 0 0 0 0-42.43L980.61-551a30 30 0 0 0-42.42 0Z" opacity=".55"/>
+	<defs>
+		<linearGradient id="radio-2-header-decoration-b" x1="-263.26" x2="906.24" y1="-79.01" y2="-79.01" gradientUnits="userSpaceOnUse">
+			<stop offset=".4" stop-color="#D9151B"/>
+			<stop offset=".49" stop-color="#D0151B"/>
+			<stop offset=".63" stop-color="#B7181E"/>
+			<stop offset=".81" stop-color="#901C22"/>
+			<stop offset="1" stop-color="#5F2228"/>
+		</linearGradient>
+		<linearGradient id="radio-2-header-decoration-d" x1="2187.55" x2="1011.35" y1="168" y2="168" gradientUnits="userSpaceOnUse">
+			<stop offset=".4" stop-color="#D9151B"/>
+			<stop offset=".49" stop-color="#D0151B"/>
+			<stop offset=".63" stop-color="#B7181E"/>
+			<stop offset=".81" stop-color="#901C22"/>
+			<stop offset="1" stop-color="#5F2228"/>
+		</linearGradient>
+		<linearGradient id="radio-2-header-decoration-e" x1="1285.01" x2="688.06" y1="-256.88" y2="340.08" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#D9151B"/>
+			<stop offset="1" stop-color="#732026"/>
+		</linearGradient>
+	</defs>
+</svg>
