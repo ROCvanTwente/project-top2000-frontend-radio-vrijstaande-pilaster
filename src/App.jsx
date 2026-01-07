@@ -16,6 +16,7 @@ const App = () => {
 
     
         <Routes>
+            {/* temp */}
             <Route path="/*" element={<Layout />} >
                 <Route index element={<Home />} />
                 <Route path="contact" element={<Contact />} />
