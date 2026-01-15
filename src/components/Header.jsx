@@ -64,32 +64,32 @@ export default function Header() {
                 {/* Collapsible section */}
                 <div className="collapse navbar-collapse" id="mainNavbar">
                     <ul className="navbar-nav mb-2 mb-lg-0 w-100 justify-content-between">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link">
+                        <li className="nav-item te">
+                            <Link to="/" className="nav-link text-white">
                                 Home
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/statistieken" className="nav-link">
+                            <Link to="/statistieken" className="nav-link text-white">
                                 Statistieken
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/geschiedenis" className="nav-link">
+                            <Link to="/geschiedenis" className="nav-link text-white">
                                 Geschiedenis
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/contact" className="nav-link">
+                            <Link to="/contact" className="nav-link text-white">
                                 Contact
                             </Link>
                         </li>
 
                         <li className="nav-item ms-auto" style={{ color: "white!important" }}>
-                            <Link to="/login" className="nav-link">
+                            <Link to="/login" className="nav-link text-white text-decoration-underline fw-bold">
                                 Log in
                             </Link>
                         </li>
