@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+    .border-end-md {
+        border-right: 2px solid var(--bs-light);
+    }
+}
