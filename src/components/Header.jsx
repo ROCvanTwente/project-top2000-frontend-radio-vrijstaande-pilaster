@@ -88,6 +88,12 @@ export default function Header() {
                             </Link>
                         </li>
 
+                        <li className="nav-item">
+                            <Link to="/Faq" className="nav-link text-white">
+                                Faq
+                            </Link>
+                        </li>
+
                         <li className="nav-item ms-auto" style={{ color: "white!important" }}>
                             <Link to="/login" className="nav-link text-white text-decoration-underline fw-bold">
                                 Log in

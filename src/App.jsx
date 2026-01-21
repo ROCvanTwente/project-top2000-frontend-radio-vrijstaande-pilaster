@@ -7,6 +7,7 @@ import Login from "@/pages/Login.jsx";
 import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
+import Faq from "@/pages/Faq.jsx";
 
 import Home from "@/pages/Home.jsx";
 import Layout from "@/layout/Layout.jsx";
@@ -22,7 +23,7 @@ const App = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="registratie" element={<Registratie />} />
                 <Route path="statistieken" element={<Statistieken />} />
-                <Route path="*" element={<h1>404 Not Found</h1>} />
+                <Route path="faq" element={<Faq />} />
             </Route>
         </Routes>
     </BrowserRouter>
