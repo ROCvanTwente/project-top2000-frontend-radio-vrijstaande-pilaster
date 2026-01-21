@@ -1,4 +1,4 @@
-import React, { useEffect, useState }, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'bootstrap/js/dist/carousel'
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const el = document.getElementById('top2000Carousel')
     if (!el) return
-    const carousel = new Carousel(el, { interval: 3000, ride: true })
+    const carousel = new Carousel(el, { interval: 3000, ride: "carousel" })
     return () => carousel.dispose()
   }, [])
   return (
