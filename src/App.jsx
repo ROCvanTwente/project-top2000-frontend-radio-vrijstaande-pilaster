@@ -4,6 +4,7 @@ import Login from "@/pages/Login.jsx";
 import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
+import FAQ from "@/pages/FAQ.jsx";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -21,7 +22,7 @@ const App = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="registratie" element={<Registratie />} />
                 <Route path="statistieken" element={<Statistieken />} />
-                <Route path="*" element={<h1>404 Not Found</h1>} />
+                <Route path="FAQ" element={<FAQ />} />
             </Route>
         </Routes>
     </BrowserRouter>
