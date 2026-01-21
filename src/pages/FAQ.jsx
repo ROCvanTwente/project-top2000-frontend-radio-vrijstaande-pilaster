@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-export default function FAQ() {
+export default function Faq() {
     return (
 
         <div className="container my-5">

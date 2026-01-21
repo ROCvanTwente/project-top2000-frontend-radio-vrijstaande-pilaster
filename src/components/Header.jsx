@@ -89,8 +89,8 @@ export default function Header() {
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/FAQ" className="nav-link text-white">
-                                FAQ
+                            <Link to="/Faq" className="nav-link text-white">
+                                Faq
                             </Link>
                         </li>
 
