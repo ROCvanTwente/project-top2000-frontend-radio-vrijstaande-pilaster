@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'bootstrap/js/dist/carousel'
 
 const Home = () => {
+  const [songs, setSongs] = useState([])
+
+  useEffect(() => {
+    fetch('https://localhost:7003/api/songs/top5')
+      .then(res => res.json())
+      .then(data => setSongs(data))
+      .catch(err => console.error('API error:', err))
+  }, [])
   useEffect(() => {
     const el = document.getElementById('top2000Carousel')
     if (!el) return
-    const carousel = new Carousel(el, { interval: 3000, ride: true })
+    const carousel = new Carousel(el, { interval: 3000, ride: "carousel" })
     return () => carousel.dispose()
   }, [])
   return (
@@ -100,33 +108,58 @@ const Home = () => {
         </div>
       </div>
 
-      <div style={{ backgroundColor: '#FEF3D4', minHeight: '100vh' }}>
-        <div className="container py-5 text-center ">
-          <p className="fw-bold fs-4">Hier ziet u de top 5 op dit moment</p>
+      <div style={{ backgroundColor: '#FEF3D4', minHeight: '90vh' }}>
+        <div className="container py-5 text-center">
+          <p className="fw-bold fs-4 text-decoration-underline">Hier ziet u de top 5 op dit moment</p>
 
-          <div className="row justify-content-center mt-5">
-          <div className="col d-flex justify-content-center">
+          <div className="d-flex flex-column align-items-center mt-4">
+            {songs.map(song => (
               <div
+                key={song.position}
                 style={{
-                  height: '50px', 
-                  width: '400px', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  backgroundColor: '#ede1be', 
+                  backgroundColor: '#ede1be',
                   borderRadius: '10px',
-                  padding: '10px',
-                  fontWeight: 'bold'
+                  padding: '12px',
+                  fontWeight: 'bold',
+                  width: '100%',
+                  maxWidth: '500px',
+                  marginBottom: '10px'
                 }}
               >
-                <div>
-                  <a href='https://www.youtube.com/watch?v=kmkpP42vQ9w&list=PLEJx--25kKVy2Q1jUQL8yFOXaL69mGUau' target='test' rel='test' className="text-decoration-none"
-                    style={{color: 'black'}}>Klik hier voor de openingsact van Bart Arends </a>
-                </div>
+                {song.position}. {song.title} -
+                <span style={{ marginLeft: '16px' }}>
+                  {song.artist}
+                </span>
               </div>
-            </div>
+            ))}
+          </div>
+          <div className="d-flex flex-column align-items-center mt-4">
+            <a
+              href="https://www.youtube.com/watch?v=kmkpP42vQ9w&list=PLEJx--25kKVy2Q1jUQL8yFOXaL69mGUau" 
+              style={{
+                width: '100%',
+                maxWidth: '500px',
+                textDecoration: 'none'
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: '#DA161A',
+                  color: "#FEF3D4",
+                  borderRadius: '10px',
+                  padding: '12px',
+                  fontWeight: 'bold',
+                  marginTop: '16px', 
+                  maxWidth: "500px",
+                }}
+              >
+                 Klik hier voor de openingsact van Bart Arends
+              </div>
+            </a>
           </div>
         </div>
       </div>
+
     </>
   )
 }
