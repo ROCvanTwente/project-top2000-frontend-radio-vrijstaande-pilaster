@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState }, { useEffect } from 'react'
+import Carousel from 'bootstrap/js/dist/carousel'
 
 const Home = () => {
   const [songs, setSongs] = useState([])
@@ -9,7 +10,12 @@ const Home = () => {
       .then(data => setSongs(data))
       .catch(err => console.error('API error:', err))
   }, [])
-
+  useEffect(() => {
+    const el = document.getElementById('top2000Carousel')
+    if (!el) return
+    const carousel = new Carousel(el, { interval: 3000, ride: true })
+    return () => carousel.dispose()
+  }, [])
   return (
     <>
       <div
@@ -43,7 +49,7 @@ const Home = () => {
             data-bs-ride="carousel"
             style={{ maxWidth: '900px' }}
           >
-            <div className="carousel-inner rounded overflow-hidden">
+            <div className="carousel-inner rounded">
               <div className="carousel-item active">
                 <img
                   src="/achtergrondFoto1.png"

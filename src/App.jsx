@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 import Contact from "@/pages/Contact.jsx";
 import Login from "@/pages/Login.jsx";
 import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Home from "@/pages/Home.jsx";
 import Layout from "@/layout/Layout.jsx";
 
