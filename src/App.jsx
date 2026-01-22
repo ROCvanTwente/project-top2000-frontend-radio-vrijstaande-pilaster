@@ -7,6 +7,7 @@ import Login from "@/pages/Login.jsx";
 import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
+import Faq from "@/pages/Faq.jsx";
 
 import Home from "@/pages/Home.jsx";
 import Layout from "@/layout/Layout.jsx";
@@ -37,6 +38,7 @@ const App = () => {
                     <Statistieken />
                   </ProtectedRoute>
                 } />
+                <Route path="faq" element={<Faq />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
         </Routes>

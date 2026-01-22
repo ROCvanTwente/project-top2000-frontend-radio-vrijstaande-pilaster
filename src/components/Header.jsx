@@ -90,6 +90,12 @@ export default function Header() {
                             </Link>
                         </li>
 
+                        <li className="nav-item">
+                            <Link to="/faq" className="nav-link text-white">
+                                Faq
+                            </Link>
+                        </li>
+
                         {isAuthenticated ? (
                             <li className="nav-item ms-auto">
                                 <button className="btn btn-outline-light fw-bold" onClick={logout}>
