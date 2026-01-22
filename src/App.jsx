@@ -11,19 +11,35 @@ import Faq from "@/pages/Faq.jsx";
 
 import Home from "@/pages/Home.jsx";
 import Layout from "@/layout/Layout.jsx";
+import ProtectedRoute from "@/components/ProtectedRoute.jsx";
+import { useAuth } from "@/hooks/useAuth";
 
 const App = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <BrowserRouter>    
         <Routes>
             <Route path="/*" element={<Layout />} >
                 <Route index element={<Home />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="geschiedenis" element={<Geschiedenis />} />
+                <Route path="contact" element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Contact />
+                  </ProtectedRoute>
+                } />
+                <Route path="geschiedenis" element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Geschiedenis />
+                  </ProtectedRoute>
+                } />
                 <Route path="login" element={<Login />} />
                 <Route path="registratie" element={<Registratie />} />
-                <Route path="statistieken" element={<Statistieken />} />
+                <Route path="statistieken" element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Statistieken />
+                  </ProtectedRoute>
+                } />
                 <Route path="faq" element={<Faq />} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
         </Routes>
     </BrowserRouter>

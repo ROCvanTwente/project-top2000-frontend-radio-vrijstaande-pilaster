@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 
 export default function Header() {
     const location = useLocation();
+    const { isAuthenticated, logout } = useAuth();
 
     let navStyle = {};
     let heroStyle = {};
@@ -99,6 +101,20 @@ export default function Header() {
                                 Log in
                             </Link>
                         </li>
+
+                        {isAuthenticated ? (
+                            <li className="nav-item ms-auto">
+                                <button className="btn btn-outline-light fw-bold" onClick={logout}>
+                                    Uitloggen
+                                </button>
+                            </li>
+                        ) : (
+                            <li className="nav-item ms-auto" style={{ color: "white!important" }}>
+                                <Link to="/login" className="nav-link text-white text-decoration-underline fw-bold">
+                                    Log in
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
 
