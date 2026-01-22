@@ -6,7 +6,6 @@ const Footer = () => {
         <footer
             style={{
                 background: "linear-gradient(253deg, rgb(217, 21, 27) 14%, rgb(34, 40, 46) 100%)",
-                marginTop: "auto",
             }}
         >
             <div
