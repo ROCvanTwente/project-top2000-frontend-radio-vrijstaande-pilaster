@@ -10,6 +10,8 @@ import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
 import Faq from "@/pages/Faq.jsx";
 import CompleteLijst from "./pages/CompleteLijst";
+import Detailpaginalied from "./pages/Detailpaginalied";
+import Detailpaginaartiest from "./pages/Detailpaginaartiest";
 
 import Layout from "@/layout/Layout.jsx";
 import ProtectedRoute from "@/components/ProtectedRoute.jsx";
@@ -30,7 +32,8 @@ const App = () => {
                 <Route path="statistieken" element={<Statistieken />} />
                 <Route path="faq" element={<Faq />} />
                 <Route path="completelijst" element={<CompleteLijst />} />
-                <Route path="*" element={<h1>404 Not Found</h1>} />
+                <Route path="detailpaginaartiest/:id" element={<Detailpaginaartiest />} />
+                <Route path="detailpaginalied/:id" element={<Detailpaginalied />} />
             </Route>
         </Routes>
     </BrowserRouter>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'bootstrap/js/dist/carousel'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const carouselItems = [
@@ -93,22 +94,26 @@ const Home = () => {
                     <p className="fw-bold fs-4 text-decoration-underline">Hier ziet u de top 5 op dit moment</p>
 
                     <div className="d-flex flex-column align-items-center mt-4">
-                        {songs.map(song => (
-                            <div
-                                key={song.position}
-                                style={{
-                                    backgroundColor: '#ede1be',
-                                    borderRadius: '10px',
-                                    padding: '12px',
-                                    fontWeight: 'bold',
-                                    width: '100%',
-                                    maxWidth: '500px',
-                                    marginBottom: '10px'
-                                }}
-                            >
-                                {song.position}. {song.title} - {song.artist}
-                            </div>
-                        ))}
+                        {songs.length > 0 && songs.map(song => (
+                        <div
+                            key={song.position}
+                            style={{
+                                backgroundColor: '#ede1be',
+                                borderRadius: '10px',
+                                padding: '12px',
+                                fontWeight: 'bold',
+                                width: '100%',
+                                maxWidth: '500px',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            {song.position}. <Link to={`/detailpaginalied/${song.songId}`} style={{ color: "inherit" }}>
+                            {song.title}
+                            </Link> - <Link to={`/detailpaginaartiest/${song.artistId}`} style={{ color: "inherit" }}>
+                            {song.artist}
+                            </Link>
+                        </div>
+                    ))}
                     </div>
                     <div className="d-flex flex-column align-items-center mt-4">
                         <a

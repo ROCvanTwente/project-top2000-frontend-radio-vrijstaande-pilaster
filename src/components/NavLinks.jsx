@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const navItems = [
     { to: "/", label: "Home" },
@@ -9,8 +10,10 @@ const navItems = [
     { to: "/Completelijst", label: "Top2000" }
 ];
 
+
 export default function NavLinks() {
     const location = useLocation();
+    const { isAuthenticated, logout } = useAuth();
 
     return (
         <>
@@ -28,12 +31,21 @@ export default function NavLinks() {
             ))}
 
             <li className="nav-item ms-auto">
-                <Link
-                    to="/Login"
-                    className="nav-link text-white text-decoration-underline fw-bold"
-                >
-                    Log in
-                </Link>
+                {isAuthenticated ? (
+                    <button
+                        onClick={logout}
+                        className="nav-link text-white text-decoration-underline fw-bold btn btn-link"
+                    >
+                        Log out
+                    </button>
+                ) : (
+                    <Link
+                        to="/Login"
+                        className="nav-link text-white text-decoration-underline fw-bold"
+                    >
+                        Log in
+                    </Link>
+                )}
             </li>
         </>
     );

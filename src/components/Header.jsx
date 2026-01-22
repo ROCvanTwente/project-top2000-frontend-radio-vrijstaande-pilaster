@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavLinks from "./NavLinks";
-import { useAuth } from "../hooks/useAuth";
-
 
 export default function Header() {
     const location = useLocation();
-    const { isAuthenticated, logout } = useAuth();
 
     let navStyle = {};
     let heroStyle = {};
@@ -20,6 +17,7 @@ export default function Header() {
 
         heroStyle = {
             backgroundImage: "url('/header-small.svg')",
+            backgroundSize: "cover",
             height: "100%",
             padding: "10px 20px"
         };
@@ -70,7 +68,6 @@ export default function Header() {
                         <NavLinks />
                     </ul>
                 </div>
-
             </div>
         </nav>
     );

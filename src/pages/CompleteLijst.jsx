@@ -79,9 +79,11 @@ const CompleteLijst = () => {
                                 marginBottom: '10px',
                             }}
                         >
-                            {song.position}. <Link to={`/detailpagesong/${song.songId}`} style={{ color: "inherit", textDecoration: "none" }}>
-                                {song.title}
-                            </Link> - {song.artist}
+                            {song.position}. <Link to={`/detailpaginalied/${song.songId}`} style={{ color: "inherit" }}>
+                            {song.title}
+                            </Link> - <Link to={`/detailpaginaartiest/${song.artistId}`} style={{ color: "inherit" }}>
+                            {song.artist}
+                            </Link>
                         </div>
                     ))}
                 </div>
