@@ -12,8 +12,11 @@ import Faq from "@/pages/Faq.jsx";
 import CompleteLijst from "./pages/CompleteLijst";
 
 import Layout from "@/layout/Layout.jsx";
+import ProtectedRoute from "@/components/ProtectedRoute.jsx";
+import { useAuth } from "@/hooks/useAuth";
 
 const App = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <BrowserRouter>    
         <Routes>
@@ -27,6 +30,7 @@ const App = () => {
                 <Route path="statistieken" element={<Statistieken />} />
                 <Route path="faq" element={<Faq />} />
                 <Route path="completelijst" element={<CompleteLijst />} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
         </Routes>
     </BrowserRouter>

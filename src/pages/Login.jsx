@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -8,6 +10,8 @@ export default function Login() {
     });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +23,6 @@ export default function Login() {
         setLoading(true);
 
         try {
-            
             const response = await fetch("https://localhost:7003/api/auth/login", {
                 method: "POST",
                 headers: {
@@ -31,17 +34,14 @@ export default function Login() {
             const data = await response.json();
 
             if (!response.ok) {
-                
                 throw new Error(data.message || "Inloggen mislukt. Controleer je gegevens.");
             }
 
-            
             localStorage.setItem("token", data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
-            
+            login(data.token);
             alert("Succesvol ingelogd!");
-            ;
-            
+            navigate("/");
         } catch (err) {
             setError(err.message);
         } finally {

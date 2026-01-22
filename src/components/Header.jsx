@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavLinks from "./NavLinks";
+import { useAuth } from "../hooks/useAuth";
 
 
 export default function Header() {
     const location = useLocation();
+    const { isAuthenticated, logout } = useAuth();
 
     let navStyle = {};
     let heroStyle = {};
