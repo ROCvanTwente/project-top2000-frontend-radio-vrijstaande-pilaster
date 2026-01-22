@@ -73,26 +73,32 @@ export default function Header() {
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/statistieken" className="nav-link text-white">
+                            <Link to="/Statistieken" className="nav-link text-white">
                                 Statistieken
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/geschiedenis" className="nav-link text-white">
+                            <Link to="/Geschiedenis" className="nav-link text-white">
                                 Geschiedenis
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/contact" className="nav-link text-white">
+                            <Link to="/Contact" className="nav-link text-white">
                                 Contact
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/faq" className="nav-link text-white">
+                            <Link to="/Faq" className="nav-link text-white">
                                 Faq
+                            </Link>
+                        </li>
+
+                        <li className="nav-item ms-auto" style={{ color: "white!important" }}>
+                            <Link to="/Login" className="nav-link text-white text-decoration-underline fw-bold">
+                                Log in
                             </Link>
                         </li>
 
