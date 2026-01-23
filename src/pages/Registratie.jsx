@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAlert } from "../components/AlertContext";
 
 export default function Registratie() {
+    const { showAlert } = useAlert();
     const { login } = useAuth();
     const navigate = useNavigate();
 
@@ -24,19 +24,13 @@ export default function Registratie() {
         e.preventDefault();
         setErrors([]);
 
-
-        if (formData.password !== formData.confirmPassword) {
-            setErrors(["Wachtwoorden komen niet overeen."]);
-            return;
-        }
-
         setLoading(true);
 
         try {
             const payload = {
                 email: formData.email,
                 password: formData.password,
-                confirmPassword: formData.password
+                confirmPassword: formData.confirmPassword
             };
 
             const response = await fetch("https://localhost:7003/api/auth/register", {
@@ -68,12 +62,10 @@ export default function Registratie() {
                 return;
             }
 
-
             login(data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
-
+            showAlert("Succesvol geregistreerd en ingelogd!", "success");
             navigate("/");
-
 
         } catch {
             setErrors(["Er is een netwerkfout opgetreden."]);

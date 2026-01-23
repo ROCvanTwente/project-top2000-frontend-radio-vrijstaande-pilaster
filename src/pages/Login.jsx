@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import { useAlert } from "../components/AlertContext";
 
 export default function Login() {
+    const { showAlert } = useAlert();
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
+    const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,9 +22,7 @@ export default function Login() {
         try {
             const response = await fetch("https://localhost:7003/api/auth/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
             });
 
@@ -41,7 +35,10 @@ export default function Login() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
             login(data.token);
+
+            showAlert("Succesvol ingelogd!", "success");
             navigate("/");
+
         } catch (err) {
             setError(err.message);
         } finally {
@@ -59,25 +56,11 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label">Emailadres</label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Wachtwoord</label>
-                        <input
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
                     </div>
                     <button type="submit" className="btn btn-primary w-100" disabled={loading}>
                         {loading ? "Laden..." : "Inloggen"}

@@ -36,7 +36,6 @@ export function useAuth() {
         setToken(null);
         setUser(null);
         window.dispatchEvent(new Event("authChange"));
-        window.location.href = "/login";
     };
 
     const roles = Array.isArray(user?.role)

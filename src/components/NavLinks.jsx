@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useAlert } from "./AlertContext";
 
 const navItems = [
     { to: "/", label: "Home" },
@@ -10,8 +11,8 @@ const navItems = [
     { to: "/Completelijst", label: "Top2000" }
 ];
 
-
 export default function NavLinks() {
+    const { showAlert } = useAlert();
     const location = useLocation();
     const { isAuthenticated, logout } = useAuth();
 
@@ -21,9 +22,7 @@ export default function NavLinks() {
                 <li className="nav-item" key={item.to}>
                     <Link
                         to={item.to}
-                        className={`nav-link text-white ${
-                            location.pathname === item.to ? "fw-bold" : ""
-                        }`}
+                        className={`nav-link text-white ${location.pathname === item.to ? "fw-bold" : ""}`}
                     >
                         {item.label}
                     </Link>
@@ -33,16 +32,16 @@ export default function NavLinks() {
             <li className="nav-item ms-auto">
                 {isAuthenticated ? (
                     <button
-                        onClick={logout}
+                        onClick={() => {
+                            showAlert("Succesvol uitgelogd!", "success");
+                            logout();
+                        }}
                         className="nav-link text-white text-decoration-underline fw-bold btn btn-link"
                     >
                         Log out
                     </button>
                 ) : (
-                    <Link
-                        to="/Login"
-                        className="nav-link text-white text-decoration-underline fw-bold"
-                    >
+                    <Link to="/Login" className="nav-link text-white text-decoration-underline fw-bold">
                         Log in
                     </Link>
                 )}
