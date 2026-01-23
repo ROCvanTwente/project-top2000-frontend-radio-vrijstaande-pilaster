@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Detailpaginalied = () => {
     const { id } = useParams();
@@ -49,7 +49,7 @@ const Detailpaginalied = () => {
                         {/* Song info */}
                         <div className="col-md-8">
                             <h1 className="fw-bold">{song.title}</h1>
-                            <h4 className="text-muted mb-4">{song.artist}</h4>
+                            <Link to={`/detailpaginaartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
 
                             {/* Lyrics */}
                             {song.lyrics && (
@@ -72,7 +72,7 @@ const Detailpaginalied = () => {
                                             className="p-3 border rounded bg-light"
                                             style={{ whiteSpace: 'pre-line' }}
                                         >
-                                            {song.lyrics}
+                                            {song.lyrics.trim()}
                                         </div>
                                     </div>
                                 </div>
