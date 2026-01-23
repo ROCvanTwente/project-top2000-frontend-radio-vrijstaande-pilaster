@@ -7,7 +7,7 @@ import React from "react";
 const Contact = () => {
   const styles = {
     page: {
-      backgroundColor: "#0a0a0a",
+      backgroundColor: "#FEF3D4",
       color: "white",
       minHeight: "100vh",
       paddingBottom: "80px",
@@ -16,57 +16,36 @@ const Contact = () => {
     hero: {
       padding: "100px 20px",
       textAlign: "center",
-      background: "linear-gradient(to bottom, #8b0000 0%, #0a0a0a 100%)",
-      borderBottom: "4px solid #e30613"
+      borderBottom: "4px solid #c23939"
     },
     redTitle: {
-      color: "#ffffff",
+      color: "#000000",
       fontWeight: "900",
       fontSize: "3.5rem",
       textTransform: "uppercase",
       letterSpacing: "3px",
     },
     infoCard: {
-      backgroundColor: "#1a1a1a",
+      backgroundColor: "#c23939",
       border: "1px solid #333",
       borderRadius: "20px",
       padding: "40px",
-      height: "100%",
-      transition: "transform 0.3s ease",
-      borderTop: "5px solid #e30613"
+      borderTop: "5px solid #c23939"
     },
-    label: {
-      color: "#e30613",
-      fontWeight: "bold",
-      textTransform: "uppercase",
-      fontSize: "0.9rem",
-      marginBottom: "5px",
-      display: "block"
-    },
+
     data: {
       fontSize: "1.4rem",
       fontWeight: "bold",
       marginBottom: "20px"
     },
-    socialButton: {
-      display: "inline-block",
-      padding: "10px 20px",
-      marginRight: "10px",
-      backgroundColor: "#e30613",
-      color: "white",
-      textDecoration: "none",
-      borderRadius: "5px",
-      fontWeight: "bold"
-    }
   };
 
   return (
     <div style={styles.page}>
       {/* Hero Sectie */}
       <div style={styles.hero}>
-        <h1 style={styles.redTitle}>Contact & Info</h1>
-        <p className="lead text-light opacity-75">Alles wat je moet weten om de Top 2000 studio te bereiken.</p>
-      </div>
+        <h1 style={styles.redTitle}>Contact & Info</h1>      
+        </div>
 
       <div className="container mt-5">
         <div className="row g-4">
