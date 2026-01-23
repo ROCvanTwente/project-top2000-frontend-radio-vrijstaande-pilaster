@@ -57,7 +57,7 @@ export default function Faq() {
           <div className="accordion-item" key={item.id} style={{ marginBottom: '10px', border: '1px solid #ddd' }}>
             <h2 className="accordion-header" id={`heading-${item.id}`}>
               <button
-                className={`accordion-button ${index !== 0 ? "collapsed" : ""}`}
+                className={`accordion-button collapsed`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={`#collapse-${item.id}`}
@@ -69,7 +69,7 @@ export default function Faq() {
 
             <div
               id={`collapse-${item.id}`}
-              className={`accordion-collapse collapse ${index === 0 ? "show" : ""}`}
+              className={`accordion-collapse collapse`}
               data-bs-parent="#faqAccordion"
             >
               <div className="accordion-body">
@@ -82,7 +82,7 @@ export default function Faq() {
 
       <div className="text-center mt-5">
         <p>
-          Heb je nog andere vragen?{" "}
+          Heb je nog andere vragen? &nbsp;
           <a href="/contact" className="faq-link">
             Neem contact met ons op
           </a>
