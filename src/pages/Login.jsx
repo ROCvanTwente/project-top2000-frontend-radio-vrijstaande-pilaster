@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,7 +41,6 @@ export default function Login() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
             login(data.token);
-            alert("Succesvol ingelogd!");
             navigate("/");
         } catch (err) {
             setError(err.message);
@@ -84,7 +84,7 @@ export default function Login() {
                     </button>
                 </form>
                 <div className="mt-3 text-center">
-                    <p>Nog geen account? <a href="/registratie">Registreer hier</a></p>
+                    <p>Nog geen account? <Link to="/registratie">Registreer hier</Link></p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Link } from "react-router-dom";
 
 const faqItems = [
   {
@@ -83,9 +84,9 @@ export default function Faq() {
       <div className="text-center mt-5">
         <p>
           Heb je nog andere vragen? &nbsp;
-          <a href="/contact" className="faq-link">
+          <Link to="/contact" className="faq-link">
             Neem contact met ons op
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Registratie() {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -18,7 +24,7 @@ export default function Registratie() {
         e.preventDefault();
         setErrors([]);
 
-       
+
         if (formData.password !== formData.confirmPassword) {
             setErrors(["Wachtwoorden komen niet overeen."]);
             return;
@@ -44,30 +50,30 @@ export default function Registratie() {
             const data = await response.json();
 
             if (!response.ok) {
-                
+
                 let errorMessages = [];
                 if (data.errors) {
-                    
+
                     Object.values(data.errors).forEach(err => {
                         errorMessages = [...errorMessages, ...err];
                     });
                 } else if (data.description) {
-                  
+
                     errorMessages.push(data.description);
                 } else {
-                    
+
                     errorMessages.push("Registratie mislukt.");
                 }
                 setErrors(errorMessages);
                 return;
             }
 
-            
-            localStorage.setItem("token", data.token);
+
+            login(data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
 
-            alert("Account aangemaakt en ingelogd!");
-            
+            navigate("/");
+
 
         } catch {
             setErrors(["Er is een netwerkfout opgetreden."]);
@@ -130,7 +136,7 @@ export default function Registratie() {
                     </button>
                 </form>
                 <div className="mt-3 text-center">
-                    <p>Heb je al een account? <a href="/login">Log hier in</a></p>
+                    <p>Heb je al een account? <Link to="/login">Log hier in</Link></p>
                 </div>
             </div>
         </div>
