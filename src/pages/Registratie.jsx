@@ -44,23 +44,29 @@ export default function Registratie() {
             const data = await response.json();
 
             if (!response.ok) {
-
                 let errorMessages = [];
-                if (data.errors) {
 
-                    Object.values(data.errors).forEach(err => {
-                        errorMessages = [...errorMessages, ...err];
+                if (Array.isArray(data?.errors)) {
+                    errorMessages.push(...data.errors);
+                } else if (data?.errors && typeof data.errors === "object") {
+                    Object.values(data.errors).forEach(errArray => {
+                        if (Array.isArray(errArray)) {
+                            errorMessages.push(...errArray);
+                        }
                     });
-                } else if (data.description) {
+                } else if (data?.errors && typeof data.errors === "string") {
+                    errorMessages.push(data.errors);
+                }
 
-                    errorMessages.push(data.description);
-                } else {
-
+                if (errorMessages.length === 0) {
                     errorMessages.push("Registratie mislukt.");
                 }
+
                 setErrors(errorMessages);
                 return;
             }
+
+
 
             login(data.token);
             localStorage.setItem("refreshToken", data.refreshToken);

@@ -33,14 +33,12 @@ const Home = () => {
                 console.error('API error:', err);
                 showAlert("Er is een fout opgetreden bij het laden van de top 5 nummers.", "danger");
             });
-            showAlert("Welkom bij de TOP 2000!", "success");
     }, [])
     useEffect(() => {
         const el = document.getElementById('top2000Carousel')
         if (!el) return
         const carousel = new Carousel(el, { interval: 3000, ride: "carousel" })
         return () => carousel.dispose()
-        showAlert
     }, [])
     return (
         <>
