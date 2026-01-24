@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
-const Detailpaginalied = () => {
+const Detaillied = () => {
+    const { isAdmin } = useAuth();
+    console.log('isAdmin:', isAdmin);
     const { id } = useParams();
     const [song, setSong] = useState(null);
     const [history, setHistory] = useState([]);
@@ -47,35 +50,44 @@ const Detailpaginalied = () => {
                         </div>
 
                         {/* Song info */}
-                        <div className="col-md-8">
-                            <h1 className="fw-bold">{song.title}</h1>
-                            <Link to={`/detailpaginaartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
+                        <div className="col-md-8 d-flex flex-row align-items-baseline justify-content-between">
+                            <div>
+                                <h1 className="fw-bold">{song.title}</h1>
+                                <Link to={`/detailartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
 
-                            {/* Lyrics */}
-                            {song.lyrics && (
-                                <div className="mt-4">
-                                    <button
-                                        className="btn btn-outline-dark mb-3"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#lyricsCollapse"
-                                        aria-expanded={showLyrics}
-                                        aria-controls="lyricsCollapse"
-                                        onClick={() => setShowLyrics(prev => !prev)}
-                                    >
-                                        {showLyrics ? 'Hide lyrics' : 'Show lyrics'}
-                                    </button>
-                                    
-                                    <div className="collapse" id="lyricsCollapse">
-                                        <h5 className="fw-bold">Lyrics</h5>
-                                        <div
-                                            className="p-3 border rounded bg-light"
-                                            style={{ whiteSpace: 'pre-line' }}
+                                {/* Lyrics */}
+                                {song.lyrics && (
+                                    <div className="mt-4">
+                                        <button
+                                            className="btn btn-outline-dark mb-3"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#lyricsCollapse"
+                                            aria-expanded={showLyrics}
+                                            aria-controls="lyricsCollapse"
+                                            onClick={() => setShowLyrics(prev => !prev)}
                                         >
-                                            {song.lyrics.trim()}
+                                            {showLyrics ? 'Hide lyrics' : 'Show lyrics'}
+                                        </button>
+
+                                        <div className="collapse" id="lyricsCollapse">
+                                            <h5 className="fw-bold">Lyrics</h5>
+                                            <div
+                                                className="p-3 border rounded bg-light"
+                                                style={{ whiteSpace: 'pre-line' }}
+                                            >
+                                                {song.lyrics.trim()}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
+                            </div>
+                            {isAdmin && (
+                                <button className="btn btn-outline-dark d-flex align-items-center justify-content-center" style={{ height: '60px', width: '120px', backgroundColor: '#ede1be', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+                                    <div>
+                                        <h2 className="fw-bold m-0">Edit</h2>
+                                    </div>
+                                </button>
                             )}
                         </div>
                     </div>
@@ -84,7 +96,7 @@ const Detailpaginalied = () => {
                     <div className="mt-5">
                         <h3 className="fw-bold mb-3">Top 2000 history</h3>
 
-                        <table className="table table-striped table-hover" style={{borderCollapse: 'separate', borderSpacing: '0', borderRadius: '10px', overflow: 'hidden'}}>
+                        <table className="table table-striped table-hover" style={{ borderCollapse: 'separate', borderSpacing: '0', borderRadius: '10px', overflow: 'hidden' }}>
                             <thead>
                                 <tr>
                                     <th>Year</th>
@@ -107,4 +119,4 @@ const Detailpaginalied = () => {
     );
 };
 
-export default Detailpaginalied;
+export default Detaillied;

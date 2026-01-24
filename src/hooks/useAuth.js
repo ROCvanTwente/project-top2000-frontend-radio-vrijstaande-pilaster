@@ -10,6 +10,7 @@ function parseUser(token) {
     }
 }
 
+
 export function useAuth() {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState(() => parseUser(token));
@@ -38,11 +39,11 @@ export function useAuth() {
         window.dispatchEvent(new Event("authChange"));
     };
 
-    const roles = Array.isArray(user?.role)
-        ? user.role
-        : user?.role
-        ? [user.role]
-        : [];
+    const rolesClaim = user?.role
+        || user?.roles
+        || user?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+    const roles = Array.isArray(rolesClaim) ? rolesClaim : rolesClaim ? [rolesClaim] : [];
 
     return {
         token,

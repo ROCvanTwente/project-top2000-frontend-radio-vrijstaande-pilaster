@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-const Detailpaginaartiest = () => {
+const Detailartiest = () => {
     const { id } = useParams();
     const [artist, setArtist] = useState(null);
     const [showBio, setShowBio] = useState(false);
@@ -68,4 +68,4 @@ const Detailpaginaartiest = () => {
     );
 };
 
-export default Detailpaginaartiest;
+export default Detailartiest;

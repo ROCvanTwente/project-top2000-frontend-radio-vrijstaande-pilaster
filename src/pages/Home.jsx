@@ -112,9 +112,9 @@ const Home = () => {
                                 marginBottom: '10px',
                             }}
                         >
-                            {song.position}. <Link to={`/detailpaginalied/${song.songId}`} style={{ color: "inherit" }}>
+                            {song.position}. <Link to={`/detaillied/${song.songId}`} style={{ color: "inherit" }}>
                             {song.title}
-                            </Link> - <Link to={`/detailpaginaartiest/${song.artistId}`} style={{ color: "inherit" }}>
+                            </Link> - <Link to={`/detailartiest/${song.artistId}`} style={{ color: "inherit" }}>
                             {song.artist}
                             </Link>
                         </div>
