@@ -68,75 +68,75 @@ const CompleteLijst = () => {
                     </div>
                 </div>
                 {songs && songs.map(song => (
-                                            <div
-                                                key={song.songId}
-                                                className="mb-4 p-3 border rounded shadow-sm bg-white w-100"
-                                            >
-                                                <div className="d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-between gap-3">
-                
-                                                    <div className="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start w-100">
-                
-                                                        <div
-                                                            className="d-flex flex-column align-items-center me-sm-3 mb-3 mb-sm-0 rounded border border-2 shadow"
-                                                            style={{ width: 70, height: 70 }}
-                                                        >
-                                                            <div className="d-flex justify-content-center align-items-center h-50 w-100 fw-bold rounded-top">
-                                                                {song.position}
-                                                            </div>
-                                                            <div
-                                                                className="d-flex justify-content-center align-items-center h-50 w-100 fw-bold rounded-bottom"
-                                                                style={{
-                                                                    backgroundColor:
-                                                                        Number(song.positionDifference) < 0 ? 'red' : Number(song.positionDifference) > 0 ? 'green' : 'grey'
-                                                                    }}
-                                                            >
-                                                                {Number(song.positionDifference) > 0 && '+'} {song.positionDifference}
-                                                            </div>
-                                                        </div>
-                
-                                                        <Link to={`/Detaillied/${song.songId}`}>
-                                                            <img
-                                                                src={song.imgUrl}
-                                                                alt={song.title}
-                                                                className="img-fluid rounded mb-3 mb-sm-0"
-                                                                style={{
-                                                                    width: 90,
-                                                                    height: 90,
-                                                                    objectFit: 'cover'
-                                                                }}
-                                                            />
-                                                        </Link>
-                
-                                                        <div className="ms-sm-3">
-                                                            <Link
-                                                                to={`/Detaillied/${song.songId}`}
-                                                                style={{ textDecoration: 'underline', color: 'inherit' }}
-                                                            >
-                                                                <h5 className="fw-bold mb-1">
-                                                                    {song.title}{' '}
-                                                                    <span className="text-muted">
-                                                                        ({song.releaseYear})
-                                                                    </span>
-                                                                </h5>
-                                                            </Link>
-                                                            <Link to={`/detailartiest/${song.artistId}`}>
-                                                                <p className="text-muted mb-0">
-                                                                    {song.artistName}
-                                                                </p>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                
-                                                    <h3 className="text-muted text-center text-md-end mb-0">
-                                                        {song.noteringen} Noteringen
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        ))}
-                
-                                        {!songs.length && (
-                                            <h1 className="text-center">Loading...</h1>
-                                        )}
+                    <div
+                        key={song.songId}
+                        className="mb-4 p-3 border rounded shadow-sm bg-white w-100"
+                    >
+                        <div className="d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-between gap-3">
+
+                            <div className="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start w-100">
+
+                                <div
+                                    className="d-flex flex-column align-items-center me-sm-3 mb-3 mb-sm-0 rounded border border-2 shadow"
+                                    style={{ width: 70, height: 70 }}
+                                >
+                                    <div className="d-flex justify-content-center align-items-center h-50 w-100 fw-bold rounded-top">
+                                        {song.position}
+                                    </div>
+                                    <div
+                                        className="d-flex justify-content-center align-items-center h-50 w-100 fw-bold rounded-bottom"
+                                        style={{
+                                            backgroundColor:
+                                                Number(song.positionDifference) < 0 ? 'red' : Number(song.positionDifference) > 0 ? 'green' : 'grey'
+                                        }}
+                                    >
+                                        {Number(song.positionDifference) > 0 && '+'} {song.positionDifference}
+                                    </div>
+                                </div>
+
+                                <Link to={`/Detaillied/${song.songId}`}>
+                                    <img
+                                        src={song.imgUrl}
+                                        alt={song.title}
+                                        className="img-fluid rounded mb-3 mb-sm-0"
+                                        style={{
+                                            width: 90,
+                                            height: 90,
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                </Link>
+
+                                <div className="ms-sm-3">
+                                    <Link
+                                        to={`/Detaillied/${song.songId}`}
+                                        style={{ textDecoration: 'underline', color: 'inherit' }}
+                                    >
+                                        <h5 className="fw-bold mb-1">
+                                            {song.title}{' '}
+                                            <span className="text-muted">
+                                                ({song.releaseYear})
+                                            </span>
+                                        </h5>
+                                    </Link>
+                                    <Link to={`/detailartiest/${song.artistId}`}>
+                                        <p className="text-muted mb-0">
+                                            {song.artistName}
+                                        </p>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            <h3 className="text-muted text-center text-md-end mb-0">
+                                {song.noteringen} Noteringen
+                            </h3>
+                        </div>
+                    </div>
+                ))}
+
+                {!songs.length && (
+                    <h1 className="text-center">Loading...</h1>
+                )}
 
             </div>
         </div>

@@ -101,21 +101,25 @@ const Detaillied = () => {
             <div style={{ backgroundColor: 'rgb(254, 243, 212)', margin: '0', padding: '0', minHeight: '90vh' }}>
                 <div className="container py-5">
                     <div className="row g-4">
-                        {/* Cover image */}
                         <div className="col-md-4 ">
                             <img
                                 src={song.imgUrl}
                                 alt={song.title}
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = 'https://picsum.photos/640';
+                                }}
                                 className="img-fluid rounded shadow"
+                                width={640}
                             />
                         </div>
 
-                        {/* Song info */}
                         <div className="col-md-8 d-flex flex-row align-items-baseline justify-content-between">
                             <div>
-                                <h1 className="fw-bold">{song.title} <span className='text-muted'>({song.releaseYear})</span></h1>
+                                <Link to={song.youtube} style={{color: 'inherit'}}>
+                                    <h1 className="fw-bold">{song.title} <span className='text-muted'>({song.releaseYear})</span></h1>
+                                </Link>
                                 <Link to={`/detailartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
-                                {/* Lyrics */}
                                 {song.lyrics && (
                                     <div className="mt-4">
                                         <button
@@ -143,21 +147,19 @@ const Detaillied = () => {
                                 )}
                             </div>
                             {isAdmin && (
-                                <button className="btn btn-outline-dark d-flex align-items-center justify-content-center" style={{ height: '60px', width: '120px', backgroundColor: '#ede1be', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
-                                    <div>
-                                        <h2 className="fw-bold m-0">Edit</h2>
-                                    </div>
-                                </button>
+                                <Link to={`/Editlied/${song.songId}`} className="text-decoration-none">
+                                    <button className="btn btn-outline-dark d-flex align-items-center justify-content-center" style={{ height: '60px', width: '120px', backgroundColor: '#ede1be', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+                                        <div>
+                                            <h2 className="fw-bold m-0">Edit</h2>
+                                        </div>
+                                    </button>
+                                </Link>
                             )}
                         </div>
                     </div>
 
 
                     <div className="mt-5">
-                        <h3 className="fw-bold mb-3">
-                            
-                        </h3>
-
                         <div
                             style={{
                                 height: '400px',

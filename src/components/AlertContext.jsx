@@ -11,7 +11,7 @@ export function AlertProvider({ children }) {
     const showAlert = (message, type = "success", duration = 3000) => {
         setAlert({ message, type });
         if (duration > 0) {
-            setTimeout(() => setAlert({ message: "", type: "success" }), duration);
+            setTimeout(() => setAlert({ message: ``, type: `${type}` }), duration);
         }
     };
 
