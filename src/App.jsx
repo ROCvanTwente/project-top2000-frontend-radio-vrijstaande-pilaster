@@ -9,9 +9,11 @@ import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
 import Faq from "@/pages/Faq.jsx";
-import CompleteLijst from "./pages/CompleteLijst";
+import CompleteLijst from "./pages/Completelijst";
 import Detaillied from "./pages/Detaillied";
 import Detailartiest from "./pages/Detailartiest";
+import Overzichtartiest from "./pages/Overzichtartiest";
+import Overzichtnummers from "./pages/Overzichtnummers";
 
 import Layout from "@/layout/Layout.jsx";
 import ProtectedRoute from "@/components/ProtectedRoute.jsx";
@@ -34,6 +36,8 @@ const App = () => {
                 <Route path="completelijst" element={<CompleteLijst />} />
                 <Route path="Detailartiest/:id" element={<Detailartiest />} />
                 <Route path="Detaillied/:id" element={<Detaillied />} />
+                <Route path="Overzichtartiest" element={<Overzichtartiest />} />
+                <Route path="Overzichtnummers" element={<Overzichtnummers />} />
             </Route>
         </Routes>
     </BrowserRouter>

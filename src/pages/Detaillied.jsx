@@ -2,14 +2,75 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend
+);
+
+
 const Detaillied = () => {
     const { isAdmin } = useAuth();
-    console.log('isAdmin:', isAdmin);
     const { id } = useParams();
     const [song, setSong] = useState(null);
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showLyrics, setShowLyrics] = useState(false);
+
+    const chartData = {
+        labels: history.map(h => h.year),
+        datasets: [
+            {
+                label: `Top 2000 history - ${history.length} noteringen`,
+                data: history.map(h => h.position),
+                borderColor: '#2c2c2c',
+                backgroundColor: 'rgba(44,44,44,0.2)',
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 10
+            }
+        ]
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                reverse: true,
+                title: {
+                    display: true,
+                    text: 'Position'
+                },
+                ticks: {
+                    callback: value => Number.isInteger(value) ? `#${value}` : null
+                }
+
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Year'
+                }
+            }
+        }
+    };
+
 
     useEffect(() => {
         fetch(`https://localhost:7003/api/songs/${id}`)
@@ -25,7 +86,7 @@ const Detaillied = () => {
                 console.error('API error:', err);
                 setLoading(false);
             });
-    }, [id]);
+    }, []);
 
     if (loading) {
         return <div className="container mt-5">Loading…</div>;
@@ -52,9 +113,8 @@ const Detaillied = () => {
                         {/* Song info */}
                         <div className="col-md-8 d-flex flex-row align-items-baseline justify-content-between">
                             <div>
-                                <h1 className="fw-bold">{song.title}</h1>
+                                <h1 className="fw-bold">{song.title} <span className='text-muted'>({song.releaseYear})</span></h1>
                                 <Link to={`/detailartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
-
                                 {/* Lyrics */}
                                 {song.lyrics && (
                                     <div className="mt-4">
@@ -92,27 +152,24 @@ const Detaillied = () => {
                         </div>
                     </div>
 
-                    {/* Chart history */}
-                    <div className="mt-5">
-                        <h3 className="fw-bold mb-3">Top 2000 history</h3>
 
-                        <table className="table table-striped table-hover" style={{ borderCollapse: 'separate', borderSpacing: '0', borderRadius: '10px', overflow: 'hidden' }}>
-                            <thead>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>Position</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {history.map((entry, index) => (
-                                    <tr key={index}>
-                                        <td>{entry.year}</td>
-                                        <td>#{entry.position}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <div className="mt-5">
+                        <h3 className="fw-bold mb-3">
+                            
+                        </h3>
+
+                        <div
+                            style={{
+                                height: '400px',
+                                backgroundColor: 'white',
+                                padding: '20px',
+                                borderRadius: '10px'
+                            }}
+                        >
+                            <Line data={chartData} options={chartOptions} />
+                        </div>
                     </div>
+
                 </div>
             </div>
         </>

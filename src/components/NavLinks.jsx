@@ -29,6 +29,15 @@ export default function NavLinks() {
                 </li>
             ))}
 
+            <div className="nav-link dropdown text-white m-0">
+                <span className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Overzicht
+                </span>
+                <ul className="dropdown-menu">
+                    <li><Link className="dropdown-item" to="/Overzichtartiest">Artiest</Link></li>
+                    <li><Link className="dropdown-item" to="/Overzichtnummers">Nummers</Link></li>
+                </ul>
+            </div>
             <li className="nav-item ms-auto">
                 {isAuthenticated ? (
                     <button

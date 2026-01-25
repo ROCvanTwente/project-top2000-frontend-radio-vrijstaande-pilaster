@@ -51,7 +51,7 @@ export default function Login() {
             <div className="card shadow p-4" style={{ width: "400px" }}>
                 <h2 className="text-center mb-4">Inloggen</h2>
                 
-                {error && <div className="alert alert-danger">{error}</div>}
+                {error && <div className="alert alert-danger"><ul className="mb-0 ps-3"><li>{error}</li></ul></div>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
