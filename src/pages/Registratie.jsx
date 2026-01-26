@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from "../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useAlert } from "../components/AlertContext";
 
 export default function Registratie() {
+    const { showAlert } = useAlert();
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -18,19 +24,13 @@ export default function Registratie() {
         e.preventDefault();
         setErrors([]);
 
-       
-        if (formData.password !== formData.confirmPassword) {
-            setErrors(["Wachtwoorden komen niet overeen."]);
-            return;
-        }
-
         setLoading(true);
 
         try {
             const payload = {
                 email: formData.email,
                 password: formData.password,
-                confirmPassword: formData.password
+                confirmPassword: formData.confirmPassword
             };
 
             const response = await fetch("https://localhost:7003/api/auth/register", {
@@ -44,30 +44,34 @@ export default function Registratie() {
             const data = await response.json();
 
             if (!response.ok) {
-                
                 let errorMessages = [];
-                if (data.errors) {
-                    
-                    Object.values(data.errors).forEach(err => {
-                        errorMessages = [...errorMessages, ...err];
+
+                if (Array.isArray(data?.errors)) {
+                    errorMessages.push(...data.errors);
+                } else if (data?.errors && typeof data.errors === "object") {
+                    Object.values(data.errors).forEach(errArray => {
+                        if (Array.isArray(errArray)) {
+                            errorMessages.push(...errArray);
+                        }
                     });
-                } else if (data.description) {
-                  
-                    errorMessages.push(data.description);
-                } else {
-                    
+                } else if (data?.errors && typeof data.errors === "string") {
+                    errorMessages.push(data.errors);
+                }
+
+                if (errorMessages.length === 0) {
                     errorMessages.push("Registratie mislukt.");
                 }
+
                 setErrors(errorMessages);
                 return;
             }
 
-            
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("refreshToken", data.refreshToken);
 
-            alert("Account aangemaakt en ingelogd!");
-            
+
+            login(data.token);
+            localStorage.setItem("refreshToken", data.refreshToken);
+            showAlert("Succesvol geregistreerd en ingelogd!", "success");
+            navigate("/");
 
         } catch {
             setErrors(["Er is een netwerkfout opgetreden."]);
@@ -130,7 +134,7 @@ export default function Registratie() {
                     </button>
                 </form>
                 <div className="mt-3 text-center">
-                    <p>Heb je al een account? <a href="/login">Log hier in</a></p>
+                    <p>Heb je al een account? <Link to="/login">Log hier in</Link></p>
                 </div>
             </div>
         </div>
