@@ -171,7 +171,7 @@ const Editroles = () => {
                                 </div>
                             </div>
 
-                            <div className="d-flex gap-2">
+                            <div className="d-flex flex-wrap gap-2 justify-content-end action-buttons">
                                 <button
                                     className="btn btn-sm btn-success"
                                     onClick={() => assignRole(user.email, selectedRole)}
@@ -210,7 +210,7 @@ const Editroles = () => {
 
                 {showDeleteModal && userToDelete && (
                     <div className="modal fade show d-block" tabIndex="-1">
-                        <div className="modal-dialog modal-dialog-centered z-index-1050">
+                        <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content border-danger">
                                 <div className="modal-header bg-danger text-white">
                                     <h5 className="modal-title">Confirm User Deletion</h5>
@@ -222,7 +222,7 @@ const Editroles = () => {
                                 </div>
 
                                 <div className="modal-body">
-                                    
+
                                     <p>
                                         This action <strong>cannot be undone</strong>.
                                     </p>

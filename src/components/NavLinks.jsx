@@ -40,10 +40,19 @@ export default function NavLinks() {
                 </ul>
             </div>
             <li className="nav-item ms-auto d-flex">
+                {isAuthenticated && (
+                    <button className="nav-link fw-bold btn btn-link p-1">
+                        <Link to="/Playlist" className="text-white">
+                            Playlist
+                        </Link>
+                    </button>
+                )}
                 {isAdmin && (
-                    <Link to="/Editroles" className="nav-link text-white text-decoration-underline fw-bold">
-                        Edit Roles
-                    </Link>
+                    <button className="nav-link fw-bold btn btn-link p-1">
+                        <Link to="/Editroles" className="text-white">
+                            Edit Roles
+                        </Link>
+                    </button>
                 )}
                 {isAuthenticated ? (
                     <button
@@ -51,15 +60,18 @@ export default function NavLinks() {
                             showAlert("Succesvol uitgelogd!", "success");
                             logout();
                         }}
-                        className="nav-link text-white text-decoration-underline fw-bold btn btn-link"
+                        className="nav-link text-white text-decoration-underline fw-bold btn btn-link p-1"
                     >
                         Log out
                     </button>
                 ) : (
-                    <Link to="/Login" className="nav-link text-white text-decoration-underline fw-bold">
-                        Log in
-                    </Link>
+                    <button className="nav-link fw-bold btn btn-link p-1">
+                        <Link to="/Login" className="text-white">
+                            Log in
+                        </Link>
+                    </button>
                 )}
+
             </li>
         </>
     );

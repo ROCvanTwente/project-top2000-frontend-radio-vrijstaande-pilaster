@@ -1,5 +1,42 @@
-@media (min-width: 768px) {
-    .border-end-md {
+.footer-block {
+    padding: 1.5rem;
+}
+
+/* ===== SMALL SCREENS (<576px) ===== */
+/* All stacked → horizontal borders */
+@media (max-width: 575.98px) {
+    .footer-block:not(:first-child) {
+        border-top: 2px solid var(--bs-light);
+    }
+}
+
+/* ===== MEDIUM SCREENS (≥576px and <768px) ===== */
+/* First 2 side-by-side, third below */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /* Vertical border between block 1 & 2 */
+    .footer-block-1 {
         border-right: 2px solid var(--bs-light);
+    }
+
+    /* Horizontal border above block 3 */
+    .footer-block-3 {
+        border-top: 2px solid var(--bs-light);
+        margin-top: 1.5rem;
+        padding-top: 2rem;
+    }
+}
+
+/* ===== LARGE SCREENS (≥768px) ===== */
+/* All 3 next to each other */
+@media (min-width: 768px) {
+    .footer-block-1,
+    .footer-block-2 {
+        border-right: 2px solid var(--bs-light);
+    }
+
+    .footer-block-3 {
+        border-top: none;
+        margin-top: 0;
+        padding-top: 1.5rem;
     }
 }

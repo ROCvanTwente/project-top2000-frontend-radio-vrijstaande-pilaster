@@ -2,12 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import Layout from "@/layout/Layout.jsx";
+
 import Home from "@/pages/Home.jsx";
 import Contact from "@/pages/Contact.jsx";
 import Login from "@/pages/Login.jsx";
 import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
-import Statistieken from "@/pages/Statistieken.jsx";
 import Faq from "@/pages/Faq.jsx";
 import CompleteLijst from "./pages/Completelijst";
 import Detaillied from "./pages/Detaillied";
@@ -17,8 +18,9 @@ import Overzichtnummers from "./pages/Overzichtnummers";
 import Editartiest from "./pages/Editartiest";
 import Editlied from "./pages/Editlied";
 import Editroles from "./pages/Editroles";
-import Detailpaginalied from "./pages/Detaillied";
-import Detailpaginaartiest from "./pages/Detailartiest";
+import Playlist from "./pages/Playlist";
+
+import Statistieken from "@/pages/Statistieken.jsx";
 import Gezakt from "./pages/Gezakt";
 import Gestegen from "./pages/Gestegen";
 import AlleEdities from "./pages/AlleEdities";
@@ -28,15 +30,14 @@ import OpnieuwBinnen from "./pages/OpnieuewBinnen";
 import ZelfdePlek from "./pages/ZelfdePlek";
 import AchterElkaar from "./pages/AchterElkaar";
 import EenKeer from "./pages/EenKeer";
+import TopArtiesten from "./pages/TopArtiesten";
 
-import Layout from "@/layout/Layout.jsx";
 import ProtectedRoute from "@/components/ProtectedRoute.jsx";
 import { useAuth } from "@/hooks/useAuth";
-import TopArtiesten from "./pages/TopArtiesten";
 
 
 const App = () => {
-  const { isAdmin } = useAuth();
+  const { isAdmin, isAuthenticated } = useAuth();
   return (
     <BrowserRouter>    
         <Routes>
@@ -54,6 +55,7 @@ const App = () => {
                 <Route path="Detaillied/:id" element={<Detaillied />} />
                 <Route path="Overzichtartiest" element={<Overzichtartiest />} />
                 <Route path="Overzichtnummers" element={<Overzichtnummers />} />
+                <Route path="Playlist" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Playlist /></ProtectedRoute>} />
                 <Route
                     path="Editartiest/:id"
                     element={
@@ -78,8 +80,6 @@ const App = () => {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="detailpaginaartiest/:id" element={<Detailpaginaartiest />} />
-                <Route path="detailpaginalied/:id" element={<Detailpaginalied />} />
                 <Route path="gezakt" element={<Gezakt />} />
                 <Route path="gestegen" element={<Gestegen />} />
                 <Route path="alleedities" element={<AlleEdities />} />
@@ -90,11 +90,6 @@ const App = () => {
                 <Route path="achterelkaar" element={<AchterElkaar />} />
                 <Route path="eenkeer" element={<EenKeer />} />
                 <Route path="topartiesten" element={<TopArtiesten />} />
-                
-                
-
-              
-
             </Route>
         </Routes>
     </BrowserRouter>

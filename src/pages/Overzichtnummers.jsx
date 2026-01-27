@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HeartComponent from '../components/HeartComponent';
 
 const PAGE_SIZE = 20;
 
 const Overzichtnummers = () => {
+    const token = localStorage.getItem('token');
     const [songs, setSongs] = useState([]);
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/songs?page=${page}`)
+        fetch(`https://localhost:7003/api/songs?page=${page}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setSongs(data);
@@ -62,7 +68,10 @@ const Overzichtnummers = () => {
                         className="mb-4 p-3 border rounded shadow-sm bg-white w-100"
                     >
                         <div className="d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-between gap-3">
-
+                            <HeartComponent
+                                songId={song.songId}
+                                initialLiked={song.isLiked}
+                            />
                             <div className="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start w-100">
 
                                 <Link to={`/Detaillied/${song.songId}`}>

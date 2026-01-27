@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import HeartComponent from '../components/HeartComponent';
 
 import {
     Chart as ChartJS,
@@ -31,7 +32,8 @@ const Detaillied = () => {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showLyrics, setShowLyrics] = useState(false);
-
+    const token = localStorage.getItem('token');
+    
     const chartData = {
         labels: history.map(h => h.year),
         datasets: [
@@ -73,7 +75,11 @@ const Detaillied = () => {
 
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/songs/${id}`)
+        fetch(`https://localhost:7003/api/songs/${id}` , {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {
@@ -116,9 +122,12 @@ const Detaillied = () => {
 
                         <div className="col-md-8 d-flex flex-row align-items-baseline justify-content-between">
                             <div>
+                                <div className="d-flex flex-row align-items-center gap-3">
                                 <Link to={song.youtube} style={{color: 'inherit'}}>
                                     <h1 className="fw-bold">{song.title} <span className='text-muted'>({song.releaseYear})</span></h1>
                                 </Link>
+                                 <HeartComponent songId={song.songId} initialLiked={song.isLiked} size={50}/>
+                                </div>
                                 <Link to={`/detailartiest/${song.artistId}`}><h4 className="text-muted mb-4">{song.artist}</h4></Link>
                                 {song.lyrics && (
                                     <div className="mt-4">
