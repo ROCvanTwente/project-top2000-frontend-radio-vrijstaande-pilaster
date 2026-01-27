@@ -17,8 +17,6 @@ import Overzichtnummers from "./pages/Overzichtnummers";
 import Editartiest from "./pages/Editartiest";
 import Editlied from "./pages/Editlied";
 import Editroles from "./pages/Editroles";
-import Detailpaginalied from "./pages/Detaillied";
-import Detailpaginaartiest from "./pages/Detailartiest";
 import Gezakt from "./pages/Gezakt";
 import Gestegen from "./pages/Gestegen";
 import AlleEdities from "./pages/AlleEdities";
@@ -36,7 +34,7 @@ import TopArtiesten from "./pages/TopArtiesten";
 
 
 const App = () => {
-  const { isAdmin } = useAuth();
+  const { isAdmin, isAuthenticated } = useAuth();
   return (
     <BrowserRouter>    
         <Routes>
@@ -54,6 +52,7 @@ const App = () => {
                 <Route path="Detaillied/:id" element={<Detaillied />} />
                 <Route path="Overzichtartiest" element={<Overzichtartiest />} />
                 <Route path="Overzichtnummers" element={<Overzichtnummers />} />
+                <Route path="Playlist" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Playlist /></ProtectedRoute>} />
                 <Route
                     path="Editartiest/:id"
                     element={
@@ -78,8 +77,6 @@ const App = () => {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="detailpaginaartiest/:id" element={<Detailpaginaartiest />} />
-                <Route path="detailpaginalied/:id" element={<Detailpaginalied />} />
                 <Route path="gezakt" element={<Gezakt />} />
                 <Route path="gestegen" element={<Gestegen />} />
                 <Route path="alleedities" element={<AlleEdities />} />
@@ -90,11 +87,6 @@ const App = () => {
                 <Route path="achterelkaar" element={<AchterElkaar />} />
                 <Route path="eenkeer" element={<EenKeer />} />
                 <Route path="topartiesten" element={<TopArtiesten />} />
-                
-                
-
-              
-
             </Route>
         </Routes>
     </BrowserRouter>

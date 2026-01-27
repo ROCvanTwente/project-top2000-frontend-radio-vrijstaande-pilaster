@@ -40,13 +40,19 @@ export default function NavLinks() {
                 </ul>
             </div>
             <li className="nav-item ms-auto d-flex">
+                {isAuthenticated && (
+                    <button className="nav-link fw-bold btn btn-link p-sm-1">
+                        <Link to="/Playlist" className="text-white">
+                            Playlist
+                        </Link>
+                    </button>
+                )}
                 {isAdmin && (
                     <button className="nav-link fw-bold btn btn-link p-sm-1">
                         <Link to="/Editroles" className="text-white">
                             Edit Roles
                         </Link>
                     </button>
-
                 )}
                 {isAuthenticated ? (
                     <button

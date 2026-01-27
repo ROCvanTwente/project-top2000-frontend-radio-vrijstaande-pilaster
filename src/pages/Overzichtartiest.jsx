@@ -61,9 +61,9 @@ const Overzichtartiest = () => {
                             <div className="card m-3 d-flex" style={{ width: '18rem' }}>
                                 <Link
                                     to={`/Detailartiest/${artist.artistId}`}
-                                    style={{ textDecoration: 'none', color: 'inherit', height: '100%' }}
+                                    style={{ textDecoration: 'none', color: 'inherit', height: '100%', display: 'flex', flexDirection: 'column' }}
                                 >
-                                    <img src={artist.photo} className="card-img-top" alt={artist.name} style={{}} />
+                                    <img src={artist.photo} className="card-img-top" alt={artist.name} style={{height: '250px', objectFit: 'cover'}} />
                                     <div className="card-body d-flex flex-column justify-content-between">
                                         <h2 className="card-text text-muted">{artist.name}</h2>
                                         <h5 className="card-text text-end">{artist.noteringen} Noteringen</h5>

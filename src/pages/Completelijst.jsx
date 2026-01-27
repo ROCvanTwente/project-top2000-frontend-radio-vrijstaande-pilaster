@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import HeartComponent from '../components/HeartComponent';
+const token = localStorage.getItem('token');
 
 const CompleteLijst = () => {
     const [year, setYear] = useState("2024");
@@ -8,7 +10,11 @@ const CompleteLijst = () => {
 
     // Function to fetch songs for a given year
     const fetchSongs = (year, order) => {
-        fetch(`https://localhost:7003/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`)
+        fetch(`https://localhost:7003/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => console.error('API error:', err));
@@ -75,7 +81,10 @@ const CompleteLijst = () => {
                         <div className="d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-between gap-3">
 
                             <div className="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start w-100">
-
+                                <HeartComponent
+                                    songId={song.songId}
+                                    initialLiked={song.isLiked}
+                                />
                                 <div
                                     className="d-flex flex-column align-items-center me-sm-3 mb-3 mb-sm-0 rounded border border-2 shadow"
                                     style={{ width: 70, height: 70 }}

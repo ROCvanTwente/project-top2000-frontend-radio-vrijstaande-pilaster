@@ -4,10 +4,10 @@ import { useAuth } from '../hooks/useAuth';
 import { useAlert } from '../components/AlertContext';
 
 const Editartiest = () => {
-    const navigate = useNavigate();
-    const { isAdmin } = useAuth();
-    const token = localStorage.getItem('token');
     const { id } = useParams();
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const { isAdmin } = useAuth();
     const { showAlert } = useAlert();
 
     const [artist, setArtist] = useState(null);
