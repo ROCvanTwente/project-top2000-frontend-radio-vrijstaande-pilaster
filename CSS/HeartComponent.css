@@ -1,42 +1,47 @@
 .heart {
-  transition: fill 0.2s ease, transform 0.2s ease;
+    transition: fill 0.2s ease, transform 0.2s ease;
 }
 
 .heart.liked {
-  fill: red;
+    fill: red;
 }
 
 .heart.animate-like {
-  animation: heart-pop 0.35s ease;
+    animation: heart-pop 0.35s ease;
 }
 
 .heart.animate-unlike {
-  animation: heart-shrink 0.25s ease;
+    animation: heart-shrink 0.25s ease;
 }
 
 @keyframes heart-pop {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.35);
-  }
-  70% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.35);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes heart-shrink {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.75);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
