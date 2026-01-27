@@ -15,6 +15,7 @@ export default function NavLinks() {
     const { showAlert } = useAlert();
     const location = useLocation();
     const { isAuthenticated, logout } = useAuth();
+    const { isAdmin } = useAuth();
 
     return (
         <>
@@ -38,7 +39,12 @@ export default function NavLinks() {
                     <li><Link className="dropdown-item" to="/Overzichtnummers">Nummers</Link></li>
                 </ul>
             </div>
-            <li className="nav-item ms-auto">
+            <li className="nav-item ms-auto d-flex">
+                {isAdmin && (
+                    <Link to="/Editroles" className="nav-link text-white text-decoration-underline fw-bold">
+                        Edit Roles
+                    </Link>
+                )}
                 {isAuthenticated ? (
                     <button
                         onClick={() => {

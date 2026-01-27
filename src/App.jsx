@@ -16,6 +16,7 @@ import Overzichtartiest from "./pages/Overzichtartiest";
 import Overzichtnummers from "./pages/Overzichtnummers";
 import Editartiest from "./pages/Editartiest";
 import Editlied from "./pages/Editlied";
+import Editroles from "./pages/Editroles";
 
 import Layout from "@/layout/Layout.jsx";
 import ProtectedRoute from "@/components/ProtectedRoute.jsx";
@@ -53,6 +54,14 @@ const App = () => {
                     element={
                         <ProtectedRoute isAuthenticated={isAdmin}>
                             <Editlied />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="Editroles"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAdmin}>
+                            <Editroles />
                         </ProtectedRoute>
                     }
                 />
