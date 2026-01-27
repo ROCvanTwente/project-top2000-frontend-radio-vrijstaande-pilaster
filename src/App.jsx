@@ -17,6 +17,8 @@ import Overzichtnummers from "./pages/Overzichtnummers";
 import Editartiest from "./pages/Editartiest";
 import Editlied from "./pages/Editlied";
 import Editroles from "./pages/Editroles";
+import Detailpaginalied from "./pages/Detaillied";
+import Detailpaginaartiest from "./pages/Detailartiest";
 import Gezakt from "./pages/Gezakt";
 import Gestegen from "./pages/Gestegen";
 import AlleEdities from "./pages/AlleEdities";
