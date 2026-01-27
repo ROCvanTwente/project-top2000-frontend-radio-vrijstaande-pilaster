@@ -9,6 +9,14 @@ import Geschiedenis from "@/pages/Geschiedenis.jsx";
 import Registratie from "@/pages/Registratie.jsx";
 import Statistieken from "@/pages/Statistieken.jsx";
 import Faq from "@/pages/Faq.jsx";
+import CompleteLijst from "./pages/Completelijst";
+import Detaillied from "./pages/Detaillied";
+import Detailartiest from "./pages/Detailartiest";
+import Overzichtartiest from "./pages/Overzichtartiest";
+import Overzichtnummers from "./pages/Overzichtnummers";
+import Editartiest from "./pages/Editartiest";
+import Editlied from "./pages/Editlied";
+import Editroles from "./pages/Editroles";
 import CompleteLijst from "./pages/CompleteLijst";
 import Detailpaginalied from "./pages/Detailpaginalied";
 import Detailpaginaartiest from "./pages/Detailpaginaartiest";
@@ -29,7 +37,7 @@ import TopArtiesten from "./pages/TopArtiesten";
 
 
 const App = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAdmin } = useAuth();
   return (
     <BrowserRouter>    
         <Routes>
@@ -43,6 +51,34 @@ const App = () => {
                 <Route path="statistieken" element={<Statistieken />} />
                 <Route path="faq" element={<Faq />} />
                 <Route path="completelijst" element={<CompleteLijst />} />
+                <Route path="Detailartiest/:id" element={<Detailartiest />} />
+                <Route path="Detaillied/:id" element={<Detaillied />} />
+                <Route path="Overzichtartiest" element={<Overzichtartiest />} />
+                <Route path="Overzichtnummers" element={<Overzichtnummers />} />
+                <Route
+                    path="Editartiest/:id"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAdmin}>
+                            <Editartiest />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="Editlied/:id"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAdmin}>
+                            <Editlied />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="Editroles"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAdmin}>
+                            <Editroles />
+                        </ProtectedRoute>
+                    }
+                />
                 <Route path="detailpaginaartiest/:id" element={<Detailpaginaartiest />} />
                 <Route path="detailpaginalied/:id" element={<Detailpaginalied />} />
                 <Route path="gezakt" element={<Gezakt />} />

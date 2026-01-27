@@ -1,17 +1,18 @@
-import Footer from "@/components/Footer"
-import Header from "@/components/Header"
-import { Outlet } from "react-router-dom"
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { Outlet } from "react-router-dom";
+import { AlertProvider } from "../components/AlertContext";
 
 const Layout = () => {
-  return (
-    <>
-        <Header />
-        <main>
-            <Outlet />
-        </main>
-        <Footer />
-    </>
-  )
-}
+    return (
+        <AlertProvider>
+            <Header />
+            <main>
+                <Outlet />
+            </main>
+            <Footer />
+        </AlertProvider>
+    );
+};
 
-export default Layout
+export default Layout;
