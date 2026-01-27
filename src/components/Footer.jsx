@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import "../../CSS/Footer.css"; // make sure to create this file
+import "../../CSS/Footer.css";
+import { useAlert } from "./AlertContext";
 
 const Footer = () => {
+    const { showAlert } = useAlert();
     return (
         <footer
             style={{
@@ -28,26 +30,27 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div
-                    className="row mt-5"
-                    style={{ fontSize: "1.2em" }}
-                >
-                    <div className="col-sm-6 col-md-3 border-light ps-md-5 text-center text-md-start border-end border-2">
+                <div className="row mt-5 footer-sections m-3" style={{ fontSize: "1.2em" }}>
+                    <div className="col-sm-6 col-md-3 footer-block footer-block-1 text-center text-md-start">
                         <h2>Radio</h2>
                         <Link className="d-block text-white text-decoration-none py-1" to="/Djs">DJ's</Link>
                         <Link className="d-block text-white text-decoration-none py-1" to="/Frequenties">Frequenties</Link>
                     </div>
-                    <div className="col-sm-6 col-md-3 border-light ps-md-5 text-center text-md-start border-end-md">
+
+                    <div className="col-sm-6 col-md-3 footer-block footer-block-2 text-center text-md-start">
                         <h2>Info</h2>
                         <Link className="d-block text-white text-decoration-none py-1" to="/Contact">Contact</Link>
                         <Link className="d-block text-white text-decoration-none py-1" to="/FAQlijst">FAQ</Link>
                     </div>
 
-                    <div className="col-sm-12 col-md-6 ps-md-5 m-md-0 mt-sm-5 text-center text-md-start border-light">
+                    <div className="col-sm-12 col-md-6 footer-block footer-block-3 text-center text-md-start">
                         <h2>Onze Pilaster Nieuwsbrief</h2>
                         <p>Blijf op de hoogte van het laatste Pilaster Nieuws!</p>
 
-                        <form className="mt-3">
+                        <form className="mt-3" onSubmit={(e) => {
+                            e.preventDefault();
+                            showAlert('Nieuwsbrief inschrijving is momenteel niet beschikbaar.', 'warning');
+                        }}>
                             <div className="input-group input-group-lg">
                                 <input
                                     type="email"
@@ -58,10 +61,7 @@ const Footer = () => {
                                 <button
                                     className="btn"
                                     type="submit"
-                                    style={{
-                                        backgroundColor: "rgb(217, 21, 27)",
-                                        color: "white",
-                                    }}
+                                    style={{ backgroundColor: "rgb(217, 21, 27)", color: "white" }}
                                 >
                                     &gt;
                                 </button>
@@ -69,6 +69,7 @@ const Footer = () => {
                         </form>
                     </div>
                 </div>
+
             </div>
         </footer>
     )
