@@ -9,7 +9,7 @@ export default function TopArtiesten() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`https://project-top2000-api.vercel.app/api/stats/topartiesten?year=${year}&take=${limit}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/topartiesten?year=${year}&take=${limit}`)
             .then(res => {
                 if (!res.ok) throw new Error("Kon topartiesten niet laden");
                 return res.json();

@@ -9,7 +9,7 @@ const Overzichtartiest = () => {
     const [hasNextPage, setHasNextPage] = useState(true);
 
     useEffect(() => {
-        fetch(`https://project-top2000-api.vercel.app/api/artists?page=${page}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists?page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setArtists(data);

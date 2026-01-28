@@ -11,7 +11,7 @@ export default function Gestegen() {
 
     useEffect(() => {
 
-        fetch(`https://project-top2000-api.vercel.app/api/stats/stijgers?year=${year}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/stijgers?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

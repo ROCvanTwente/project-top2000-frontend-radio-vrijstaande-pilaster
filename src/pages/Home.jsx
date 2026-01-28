@@ -26,7 +26,7 @@ const Home = () => {
     const [songs, setSongs] = useState([])
 
     useEffect(() => {
-        fetch('https://project-top2000-api.vercel.app/api/songs/top5',
+        fetch('https://radio-vrijstaande-pilaster.runasp.net/api/songs/top5',
         { headers: { "Authorization": `Bearer ${token}` } }
         )
             .then(res => res.json())

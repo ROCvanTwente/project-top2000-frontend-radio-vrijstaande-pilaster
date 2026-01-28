@@ -27,7 +27,7 @@ const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) =>
             setLoading(true);
 
             const response = await fetch(
-                "https://localhost:7003/api/playlist",
+                "https://radio-vrijstaande-pilaster.runasp.net/api/playlist",
                 {
                     method: liked ? "DELETE" : "PUT",
                     headers: {

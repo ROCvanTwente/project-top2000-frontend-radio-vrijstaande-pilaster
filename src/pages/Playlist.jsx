@@ -18,7 +18,7 @@ const Playlist = () => {
             return;
         }
 
-        fetch("https://localhost:7003/api/playlist", {
+        fetch("https://radio-vrijstaande-pilaster.runasp.net/api/playlist", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

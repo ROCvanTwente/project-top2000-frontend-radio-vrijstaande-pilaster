@@ -75,7 +75,7 @@ const Detaillied = () => {
 
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/songs/${id}` , {
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/${id}` , {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
