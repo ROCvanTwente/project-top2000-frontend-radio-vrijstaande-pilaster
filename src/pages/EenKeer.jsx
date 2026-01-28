@@ -7,7 +7,7 @@ export default function EenKeer() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("https://localhost:7003/api/stats/eenkeer")
+        fetch("https://project-top2000-api.vercel.app/api/stats/eenkeer")
             .then(res => {
                 if (!res.ok) throw new Error("Kon one-timers niet laden");
                 return res.json();

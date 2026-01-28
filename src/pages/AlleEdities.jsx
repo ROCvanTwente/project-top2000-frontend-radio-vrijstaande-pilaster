@@ -7,7 +7,7 @@ export default function AlleEdities() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/stats/alleedities')
+        fetch('https://project-top2000-api.vercel.app/api/stats/alleedities')
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

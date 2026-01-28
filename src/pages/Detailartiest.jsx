@@ -10,7 +10,7 @@ const Detailartiest = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/artists/${id}`)
+        fetch(`https://project-top2000-api.vercel.app/api/artists/${id}`)
             .then(res => res.json())
             .then(data => {
                 setArtist(data);

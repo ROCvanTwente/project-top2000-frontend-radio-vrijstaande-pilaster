@@ -10,7 +10,7 @@ export default function Gezakt() {
     const prevYear = year - 1;
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/stats/dalers?year=${year}`)
+        fetch(`https://project-top2000-api.vercel.app/api/stats/dalers?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

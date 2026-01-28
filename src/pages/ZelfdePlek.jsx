@@ -18,7 +18,7 @@ export default function ZelfdePlek() {
     };
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/stats/dezelfdeplek?year=${year}`)
+        fetch(`https://project-top2000-api.vercel.app/api/stats/dezelfdeplek?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();
