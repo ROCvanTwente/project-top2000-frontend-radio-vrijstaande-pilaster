@@ -48,7 +48,7 @@ export default function AlleEdities() {
                             >
                                 <div className="d-flex align-items-center gap-4">
                                     {song.imgUrl && (
-                                        <Link to={`/detailpaginalied/${song.songId}`}>
+                                        <Link to={`/detaillied/${song.songId}`}>
                                             <img
                                                 src={song.imgUrl}
                                                 alt={song.title}
@@ -65,7 +65,7 @@ export default function AlleEdities() {
                                     {/* Info */}
                                     <div className="flex-grow-1">
                                         <Link
-                                            to={`/detailpaginalied/${song.songId}`}
+                                            to={`/detaillied/${song.songId}`}
                                             style={{ color: 'black' }}
                                         >
                                             <h5 className="fw-bold mb-1">
@@ -73,7 +73,7 @@ export default function AlleEdities() {
                                             </h5>
                                         </Link>
 
-                                        <Link to={`/detailpaginaartiest/${song.artistId}`}>
+                                        <Link to={`/detailartiest/${song.artistId}`}>
                                             <p className="text-muted mb-0">
                                                 {song.artist}
                                             </p>

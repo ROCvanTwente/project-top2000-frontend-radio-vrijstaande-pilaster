@@ -94,7 +94,7 @@ export default function Gestegen() {
                                                 </div>
                                             </div>
 
-                                            <Link to={`/detailpaginalied/${song.songId}`}>
+                                            <Link to={`/detaillied/${song.songId}`}>
                                                 <img
                                                     src={song.imgUrl}
                                                     alt={song.title}
@@ -110,7 +110,7 @@ export default function Gestegen() {
 
                                         <div className="w-100 text-center text-md-start">
                                             <Link
-                                                to={`/detailpaginalied/${song.songId}`}
+                                                to={`/detaillied/${song.songId}`}
                                                 style={{ color: 'black' }}
                                             >
                                                 <h5 className="fw-bold mb-1 mt-2 mt-md-0 text-truncate">
@@ -118,7 +118,7 @@ export default function Gestegen() {
                                                 </h5>
                                             </Link>
 
-                                            <Link to={`/detailpaginaartiest/${song.artistId}`}>
+                                            <Link to={`/detailartiest/${song.artistId}`}>
                                                 <p>{song.artist}</p>
                                             </Link>
 

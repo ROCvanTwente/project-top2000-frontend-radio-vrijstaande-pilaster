@@ -85,7 +85,7 @@ export default function AchterElkaar() {
                                         </div>
 
                                         {entry.imgUrl && (
-                                            <Link to={`/detailpaginalied/${entry.songId}`}>
+                                            <Link to={`/detaillied/${entry.songId}`}>
                                                 <img
                                                     src={entry.imgUrl}
                                                     alt={entry.title}
@@ -100,12 +100,12 @@ export default function AchterElkaar() {
                                     </div>
 
                                     <div className="w-100 text-center text-md-start ">
-                                        <Link to={`/detailpaginalied/${entry.songId}`} style={{ color: 'black' }}>
+                                        <Link to={`/detaillied/${entry.songId}`} style={{ color: 'black' }}>
                                             <h5 className="fw-bold mb-1 ">
                                                 {entry.title} ({entry.releaseYear || '-'})
                                             </h5>
                                         </Link>
-                                        <Link to={`/detailpaginaartiest/${entry.artistId}`}>
+                                        <Link to={`/detailartiest/${entry.artistId}`}>
                                             <p className="mb-1">{entry.artist}</p>
                                         </Link>
 
