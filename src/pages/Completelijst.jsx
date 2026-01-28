@@ -10,7 +10,7 @@ const CompleteLijst = () => {
 
     // Function to fetch songs for a given year
     const fetchSongs = (year, order) => {
-        fetch(`https://localhost:7003/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`, {
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

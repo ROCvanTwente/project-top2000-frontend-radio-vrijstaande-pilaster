@@ -16,7 +16,7 @@ export default function OpnieuwBinnen() {
     };
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/stats/opnieuwbinnen?year=${year}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/opnieuwbinnen?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

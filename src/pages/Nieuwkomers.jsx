@@ -16,7 +16,7 @@ export default function NieuweBinnenkomers() {
     };
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/stats/nieuw?year=${year}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/nieuw?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

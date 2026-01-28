@@ -11,7 +11,7 @@ const Overzichtnummers = () => {
     const [hasNextPage, setHasNextPage] = useState(true);
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/songs?page=${page}`, {
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs?page=${page}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
