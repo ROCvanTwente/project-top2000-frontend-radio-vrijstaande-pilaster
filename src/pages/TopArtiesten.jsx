@@ -81,7 +81,7 @@ export default function TopArtiesten() {
                                 }}
                             >
                                 {artist.imgUrl && (
-                                    <Link to={`/detailpaginalied/${artist.songId}`}>
+                                    <Link to={`/detaillied/${artist.songId}`}>
                                         <img
                                             src={artist.imgUrl}
                                             alt={artist.artist}
@@ -96,7 +96,7 @@ export default function TopArtiesten() {
 
 
                                 <div className="flex-grow-1">
-                                    <Link to={`/detailpaginaartiest/${artist.artistId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to={`/detailartiest/${artist.artistId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <h5 className="fw-bold mb-2">{artist.artist}</h5>
                                     </Link>
                                     <p className="mb-1">Aantal liedjes: {artist.songCount}</p>

@@ -84,7 +84,7 @@ export default function OpnieuwBinnen() {
                                         </div>
 
                                         {song.imgUrl && (
-                                            <Link to={`/detailpaginalied/${song.songId}`}>
+                                            <Link to={`/detaillied/${song.songId}`}>
                                                 <img
                                                     src={song.imgUrl}
                                                     alt={song.title}
@@ -99,12 +99,12 @@ export default function OpnieuwBinnen() {
                                     </div>
 
                                     <div className="w-100 text-center text-md-start mt-2 mt-md-0">
-                                        <Link to={`/detailpaginalied/${song.songId}`} style={{ color: 'black' }}>
+                                        <Link to={`/detaillied/${song.songId}`} style={{ color: 'black' }}>
                                             <h5 className="fw-bold mb-1 text-truncate">
                                                 {song.title} ({song.releaseYear})
                                             </h5>
                                         </Link>
-                                        <Link to={`/detailpaginaartiest/${song.artistId}`}>
+                                        <Link to={`/detailartiest/${song.artistId}`}>
                                             <p className="mb-1">{song.artist}</p>
                                         </Link>
 
