@@ -16,7 +16,7 @@ export default function AchterElkaar() {
     };
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/stats/achterelkaar?year=${year}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/achterelkaar?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

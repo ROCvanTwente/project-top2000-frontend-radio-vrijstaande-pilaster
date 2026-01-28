@@ -23,7 +23,7 @@ const Editartiest = () => {
 
 
     useEffect(() => {
-        fetch(`https://localhost:7003/api/artists/${id}`)
+        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
             .then(res => res.json())
             .then(data => {
 
@@ -58,7 +58,7 @@ const Editartiest = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://localhost:7003/api/edit/artist/`, {
+            const res = await fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/edit/artist/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

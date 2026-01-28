@@ -19,7 +19,7 @@ const Editroles = () => {
     const [selectedRole, setSelectedRole] = useState('User');
 
     useEffect(() => {
-        fetch('https://localhost:7003/api/admin/users', {
+        fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/users', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -38,7 +38,7 @@ const Editroles = () => {
 
     const assignRole = async (email, role) => {
         try {
-            const res = await fetch('https://localhost:7003/api/admin/assign-role', {
+            const res = await fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const Editroles = () => {
 
     const removeRole = async (email, role) => {
         try {
-            const res = await fetch('https://localhost:7003/api/admin/remove-role', {
+            const res = await fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ const Editroles = () => {
             setDeleteLoading(true);
 
             const res = await fetch(
-                `https://localhost:7003/api/admin/delete-user/${userToDelete.id}`,
+                `https://radio-vrijstaande-pilaster.runasp.net/api/admin/delete-user/${userToDelete.id}`,
                 {
                     method: 'DELETE',
                     headers: {

@@ -33,7 +33,7 @@ export default function Registratie() {
                 confirmPassword: formData.confirmPassword
             };
 
-            const response = await fetch("https://localhost:7003/api/auth/register", {
+            const response = await fetch("https://radio-vrijstaande-pilaster.runasp.net/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
