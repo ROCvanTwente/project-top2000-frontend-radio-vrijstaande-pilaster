@@ -5,10 +5,23 @@ import Header from "@/components/Header";
 import { AlertProvider } from "../components/AlertContext";
 import apiFetch from "../components/ApiWrapper";
 import { useAuth } from "../hooks/useAuth";
+import { jwtDecode } from "jwt-decode";
+
 
 const Layout = () => {
     const { logout } = useAuth();
     const [authChecked, setAuthChecked] = useState(false);
+
+    const isTokenExpired = (token) => {
+        if (!token) return true;
+        try {
+            const { exp } = jwtDecode(token);
+            // exp is in seconds
+            return Date.now() >= exp * 1000;
+        } catch {
+            return true;
+        }
+    };
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -20,10 +33,14 @@ const Layout = () => {
             }
 
             try {
-                // apiFetch will handle 401 + token refresh automatically
+                // if token expired, refresh before calling /me
+                if (isTokenExpired(token)) {
+                    await refreshAccessToken(); // your existing refresh function
+                }
+
+                // now token is valid → safe to call /me
                 await apiFetch("/api/auth/me");
-            } catch (err) {
-                // if apiFetch fails even after refresh → logout
+            } catch {
                 logout();
             } finally {
                 setAuthChecked(true);
@@ -32,6 +49,7 @@ const Layout = () => {
 
         checkAuth();
     }, [logout]);
+
 
     if (!authChecked) {
         return null; // or a spinner
