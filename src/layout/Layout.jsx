@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { AlertProvider } from "../components/AlertContext";
-import apiFetch from "../components/ApiWrapper";
 import { useAuth } from "../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
-
+import { AlertProvider } from "../components/AlertContext";
+import apiFetch from "../components/ApiWrapper";
+import refreshAccessToken from "../components/RefreshComponent";
 
 const Layout = () => {
     const { logout } = useAuth();
@@ -19,6 +19,7 @@ const Layout = () => {
             // exp is in seconds
             return Date.now() >= exp * 1000;
         } catch {
+            console.log("Failed to decode token");
             return true;
         }
     };
