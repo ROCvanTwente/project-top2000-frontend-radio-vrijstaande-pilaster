@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { AlertProvider } from "../components/AlertContext";
 import apiFetch from "../components/ApiWrapper";
+import useAuth from "../hooks/useAuth";
 
 const Layout = () => {
     const { logout } = useAuth();
