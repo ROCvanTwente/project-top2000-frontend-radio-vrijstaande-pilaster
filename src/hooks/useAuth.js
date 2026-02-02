@@ -34,6 +34,7 @@ export function useAuth() {
 
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         setToken(null);
         setUser(null);
         window.dispatchEvent(new Event("authChange"));
