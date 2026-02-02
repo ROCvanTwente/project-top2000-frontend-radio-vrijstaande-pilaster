@@ -1,7 +1,3 @@
-import refreshAccessToken from "./RefreshComponent";
-let isRefreshing = false;
-let refreshPromise = null;
-
 export default async function apiFetch(url, options = {}, retry = true) {
     const token = localStorage.getItem("token");
 
@@ -17,16 +13,15 @@ export default async function apiFetch(url, options = {}, retry = true) {
         if (!response.ok) {
             throw new Error(`HTTP error ${response.status}`);
         }
-        return response.json();
+        const text = await response.text();
+        return text ? JSON.parse(text) : null;
     }
-
 
     if (!isRefreshing) {
         isRefreshing = true;
-        refreshPromise = refreshAccessToken()
-            .finally(() => {
-                isRefreshing = false;
-            });
+        refreshPromise = refreshAccessToken().finally(() => {
+            isRefreshing = false;
+        });
     }
 
     const success = await refreshPromise;
@@ -50,6 +45,6 @@ export default async function apiFetch(url, options = {}, retry = true) {
         throw new Error(`HTTP error ${retryResponse.status}`);
     }
 
-    return retryResponse.json();
-
+    const retryText = await retryResponse.text();
+    return retryText ? JSON.parse(retryText) : null;
 }
