@@ -12,7 +12,7 @@ const Layout = () => {
         async function checkToken() {
             const token = localStorage.getItem("token");
             try {
-                await fetchApi('https://radio-vrijstaande-pilaster.runasp.net/api/api/auth/me', {
+                await fetchApi('https://radio-vrijstaande-pilaster.runasp.net/api/auth/me', {
                     headers: {
                         Authorization: token ? `Bearer ${token}` : undefined,
                     },
