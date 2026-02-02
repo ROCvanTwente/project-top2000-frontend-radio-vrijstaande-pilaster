@@ -64,9 +64,6 @@ const Editartiest = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            if (!res.ok) {
-                throw new Error('Failed to update artist');
-            }
 
             showAlert('Artist updated successfully.', 'success');
             navigate(`/detailartiest/${id}`);

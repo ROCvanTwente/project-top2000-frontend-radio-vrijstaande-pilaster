@@ -36,10 +36,6 @@ const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) =>
                 }
             );
 
-            if (!response.ok) {
-                throw new Error("Failed to like song");
-            }
-
             if (liked) {
                 showAlert("Nummer verwijderd van je favorieten.", "info");
             } else {
