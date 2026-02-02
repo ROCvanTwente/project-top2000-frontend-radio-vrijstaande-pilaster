@@ -9,10 +9,6 @@ export default function AlleEdities() {
 
     useEffect(() => {
         apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/stats/alleedities')
-            .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
-                return res.json();
-            })
             .then(data => setSongs(data))
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));

@@ -18,10 +18,7 @@ const Playlist = () => {
         }
 
         apiFetch("https://radio-vrijstaande-pilaster.runasp.net/api/playlist")
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to load playlist");
-                return res.json();
-            })
+
             .then(data => setSongs(data))
             .catch(err => {
                 console.error("Playlist error:", err);

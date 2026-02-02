@@ -27,7 +27,6 @@ const Home = () => {
 
     useEffect(() => {
         apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/songs/top5')
-            .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => {
                 console.error('API error:', err);
