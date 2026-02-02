@@ -1,41 +1,43 @@
 let isRefreshing = false;
 let refreshPromise = null;
 
-export default async function apiFetch(url, options = {}) {
-    const accessToken = authStore.getAccessToken();
+export default async function apiFetch(url, options = {}, retry = true) {
+    const token = localStorage.getItem("token");
 
     const response = await fetch(url, {
         ...options,
         headers: {
             ...options.headers,
-            Authorization: `Bearer ${accessToken}`
-        }
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
     });
 
-    if (response.status !== 401) {
+    if (response.status !== 401 || !retry) {
         return response;
     }
 
-    // Prevent multiple refresh calls
     if (!isRefreshing) {
         isRefreshing = true;
-        refreshPromise = refreshAccessToken();
+        refreshPromise = refreshAccessToken()
+            .finally(() => {
+                isRefreshing = false;
+            });
     }
 
     const success = await refreshPromise;
-    isRefreshing = false;
 
     if (!success) {
-        authStore.logout();
+        localStorage.removeItem("token");
         throw new Error("Session expired");
     }
+    
+    const newToken = localStorage.getItem("token");
 
-    // Retry original request
     return fetch(url, {
         ...options,
         headers: {
             ...options.headers,
-            Authorization: `Bearer ${authStore.getAccessToken()}`
-        }
+            Authorization: `Bearer ${newToken}`,
+        },
     });
 }
