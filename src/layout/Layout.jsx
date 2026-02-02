@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { AlertProvider } from "../components/AlertContext";
-import { fetchApi } from "../components/ApiWrapper";
+import fetchApi from "../components/ApiWrapper";
 
 const Layout = async () => {
     const token = localStorage.getItem("token");
