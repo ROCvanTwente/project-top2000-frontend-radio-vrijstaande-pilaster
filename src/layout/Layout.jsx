@@ -9,28 +9,32 @@ import { useAuth } from "../hooks/useAuth";
 const Layout = () => {
     const { logout } = useAuth();
     const [authChecked, setAuthChecked] = useState(false);
-    
+
     useEffect(() => {
         const checkAuth = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                setAuthChecked(true);
+                return;
+            }
+
             try {
+                // apiFetch will handle 401 + token refresh automatically
                 await apiFetch("/api/auth/me");
-            } catch {
+            } catch (err) {
+                // if apiFetch fails even after refresh → logout
                 logout();
             } finally {
                 setAuthChecked(true);
             }
         };
 
-        if (localStorage.getItem("token")) {
-            checkAuth();
-        } else {
-            setAuthChecked(true);
-        }
-    }, []);
-
+        checkAuth();
+    }, [logout]);
 
     if (!authChecked) {
-        return null;
+        return null; // or a spinner
     }
 
     return (
