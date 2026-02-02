@@ -1,3 +1,4 @@
+import refreshAccessToken from "./RefreshComponent";
 let isRefreshing = false;
 let refreshPromise = null;
 
@@ -13,8 +14,12 @@ export default async function apiFetch(url, options = {}, retry = true) {
     });
 
     if (response.status !== 401 || !retry) {
-        return response;
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
     }
+
 
     if (!isRefreshing) {
         isRefreshing = true;
@@ -30,14 +35,21 @@ export default async function apiFetch(url, options = {}, retry = true) {
         localStorage.removeItem("token");
         throw new Error("Session expired");
     }
-    
+
     const newToken = localStorage.getItem("token");
 
-    return fetch(url, {
+    const retryResponse = await fetch(url, {
         ...options,
         headers: {
             ...options.headers,
             Authorization: `Bearer ${newToken}`,
         },
     });
+
+    if (!retryResponse.ok) {
+        throw new Error(`HTTP error ${retryResponse.status}`);
+    }
+
+    return retryResponse.json();
+
 }
