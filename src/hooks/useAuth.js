@@ -25,8 +25,9 @@ export function useAuth() {
         return () => window.removeEventListener("authChange", handler);
     }, []);
 
-    const login = (newToken) => {
+    const login = (newToken, newRefreshToken) => {
         localStorage.setItem("token", newToken);
+        localStorage.setItem("refreshToken", newRefreshToken);
         setToken(newToken);
         setUser(parseUser(newToken));
         window.dispatchEvent(new Event("authChange"));

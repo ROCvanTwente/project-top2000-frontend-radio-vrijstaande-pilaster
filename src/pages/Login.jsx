@@ -32,7 +32,7 @@ export default function Login() {
                 throw new Error(data.message || "Inloggen mislukt. Controleer je gegevens.");
             }
 
-            login(data.token);
+            login(data.token, data.refreshToken);
 
             showAlert("Succesvol ingelogd!", "success");
             navigate("/");
