@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { apiFetch } from '../components/ApiWrapper';
 
 export default function AlleEdities() {
     const [songs, setSongs] = useState([]);
@@ -7,7 +8,7 @@ export default function AlleEdities() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('https://radio-vrijstaande-pilaster.runasp.net/api/stats/alleedities')
+        apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/stats/alleedities')
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { apiFetch } from '../components/ApiWrapper';
 
 export default function Gestegen() {
     const [year, setYear] = useState(2024);
@@ -10,8 +11,7 @@ export default function Gestegen() {
     const prevYear = year - 1;
 
     useEffect(() => {
-
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/stijgers?year=${year}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/stijgers?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

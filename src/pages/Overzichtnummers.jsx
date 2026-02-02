@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeartComponent from '../components/HeartComponent';
+import { apiFetch } from '../components/ApiWrapper';
 
 const PAGE_SIZE = 20;
 
 const Overzichtnummers = () => {
-    const token = localStorage.getItem('token');
     const [songs, setSongs] = useState([]);
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs?page=${page}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-            .then(res => res.json())
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs?page=${page}`)
+        .then(res => res.json())
             .then(data => {
                 setSongs(data);
                 setHasNextPage(data.length === PAGE_SIZE);

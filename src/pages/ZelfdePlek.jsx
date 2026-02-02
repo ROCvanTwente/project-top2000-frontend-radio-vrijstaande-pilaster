@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { apiFetch } from '../components/ApiWrapper';
 
 export default function ZelfdePlek() {
     const [year, setYear] = useState(2024);
@@ -18,7 +19,7 @@ export default function ZelfdePlek() {
     };
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/dezelfdeplek?year=${year}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/dezelfdeplek?year=${year}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();

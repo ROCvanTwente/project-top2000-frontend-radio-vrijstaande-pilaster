@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import HeartComponent from '../components/HeartComponent';
-const token = localStorage.getItem('token');
+import { apiFetch } from '../components/ApiWrapper';
 
 const CompleteLijst = () => {
     const [year, setYear] = useState("2024");
@@ -10,11 +10,7 @@ const CompleteLijst = () => {
 
     // Function to fetch songs for a given year
     const fetchSongs = (year, order) => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`)
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => console.error('API error:', err));

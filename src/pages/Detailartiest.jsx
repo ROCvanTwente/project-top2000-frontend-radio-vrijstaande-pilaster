@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { apiFetch } from '../components/ApiWrapper';
 
 const Detailartiest = () => {
     const { isAdmin } = useAuth();
@@ -10,7 +11,7 @@ const Detailartiest = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
             .then(res => res.json())
             .then(data => {
                 setArtist(data);

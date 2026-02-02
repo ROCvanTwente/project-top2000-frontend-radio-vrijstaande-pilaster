@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiFetch } from '../components/ApiWrapper';
 
 const PAGE_SIZE = 20;
 
@@ -9,8 +10,7 @@ const Overzichtartiest = () => {
     const [hasNextPage, setHasNextPage] = useState(true);
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists?page=${page}`)
-            .then(res => res.json())
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists?page=${page}`)
             .then(data => {
                 setArtists(data);
                 setHasNextPage(data.length === PAGE_SIZE);

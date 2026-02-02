@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAlert } from '../components/AlertContext';
+import { apiFetch } from '../components/ApiWrapper';
 
 const Editroles = () => {
     const navigate = useNavigate();
     const { isAdmin } = useAuth();
     const { showAlert } = useAlert();
-    const token = localStorage.getItem('token');
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
@@ -19,10 +19,8 @@ const Editroles = () => {
     const [selectedRole, setSelectedRole] = useState('User');
 
     useEffect(() => {
-        fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/users', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+        apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/users', {
+            method: 'GET',
         })
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch users');
@@ -34,15 +32,14 @@ const Editroles = () => {
                 showAlert('Failed to load users', 'danger');
             })
             .finally(() => setLoading(false));
-    }, [token, showAlert]);
+    }, [showAlert]);
 
     const assignRole = async (email, role) => {
         try {
-            const res = await fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
+            const res = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ email, role })
             });
@@ -64,11 +61,10 @@ const Editroles = () => {
 
     const removeRole = async (email, role) => {
         try {
-            const res = await fetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
+            const res = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ email, role })
             });
@@ -99,20 +95,17 @@ const Editroles = () => {
         if (!userToDelete) return;
 
         if (confirmEmail !== userToDelete.email) {
-            showAlert('Email does not match. Deletion aborted.', 'danger');
+            showAlert('Email matcht niet. Verwijderen afgebroken.', 'danger');
             return;
         }
 
         try {
             setDeleteLoading(true);
 
-            const res = await fetch(
+            const res = await apiFetch(
                 `https://radio-vrijstaande-pilaster.runasp.net/api/admin/delete-user/${userToDelete.id}`,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
                 }
             );
 
@@ -125,13 +118,11 @@ const Editroles = () => {
             setShowDeleteModal(false);
             setUserToDelete(null);
         } catch (err) {
-            showAlert(err.message || 'Failed to delete user', 'danger');
+            showAlert(err.message || 'Gebruiker verwijderen mislukt', 'danger');
         } finally {
             setDeleteLoading(false);
         }
     };
-
-
 
     if (!isAdmin) {
         return <div className="container mt-5">Access denied</div>;

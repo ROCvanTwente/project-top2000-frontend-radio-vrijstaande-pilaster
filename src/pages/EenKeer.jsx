@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from '../components/ApiWrapper';
 
 export default function EenKeer() {
     const [songs, setSongs] = useState([]);
@@ -7,7 +8,7 @@ export default function EenKeer() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("https://radio-vrijstaande-pilaster.runasp.net/api/stats/eenkeer")
+        apiFetch("https://radio-vrijstaande-pilaster.runasp.net/api/stats/eenkeer")
             .then(res => {
                 if (!res.ok) throw new Error("Kon one-timers niet laden");
                 return res.json();

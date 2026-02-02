@@ -50,7 +50,7 @@ export default function NavLinks() {
                 {isAdmin && (
                     <button className="nav-link fw-bold btn btn-link p-1">
                         <Link to="/Editroles" className="text-white">
-                            Edit Roles
+                            Rollen wijzigen
                         </Link>
                     </button>
                 )}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from '../components/ApiWrapper';
 
 export default function TopArtiesten() {
     const [year, setYear] = useState(2024);
@@ -9,7 +10,7 @@ export default function TopArtiesten() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/topartiesten?year=${year}&take=${limit}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/topartiesten?year=${year}&take=${limit}`)
             .then(res => {
                 if (!res.ok) throw new Error("Kon topartiesten niet laden");
                 return res.json();

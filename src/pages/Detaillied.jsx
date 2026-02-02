@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import HeartComponent from '../components/HeartComponent';
+import { apiFetch } from '../components/ApiWrapper';
 
 import {
     Chart as ChartJS,
@@ -32,7 +33,6 @@ const Detaillied = () => {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showLyrics, setShowLyrics] = useState(false);
-    const token = localStorage.getItem('token');
     
     const chartData = {
         labels: history.map(h => h.year),
@@ -75,11 +75,7 @@ const Detaillied = () => {
 
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/${id}` , {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {
