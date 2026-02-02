@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAlert } from "./AlertContext";
 import { useAuth } from '../hooks/useAuth';
 import '../../CSS/HeartComponent.css';
+import apiFetch from './ApiWrapper';
 
 const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) => {
     const [liked, setLiked] = useState(initialLiked);
@@ -15,8 +16,6 @@ const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) =>
         }
     }, [isAuthenticated]);
 
-    const token = localStorage.getItem('token');
-
     const [animation, setAnimation] = useState(null);
 
 
@@ -26,18 +25,16 @@ const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) =>
         try {
             setLoading(true);
 
-            const response = await fetch(
+            const response = await apiFetch(
                 "https://radio-vrijstaande-pilaster.runasp.net/api/playlist",
                 {
                     method: liked ? "DELETE" : "PUT",
                     headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ songId })
                 }
             );
-
 
             if (!response.ok) {
                 throw new Error("Failed to like song");

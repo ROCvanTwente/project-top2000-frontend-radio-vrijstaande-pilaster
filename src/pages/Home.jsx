@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Carousel from 'bootstrap/js/dist/carousel'
 import { Link } from 'react-router-dom'
 import HeartComponent from '../components/HeartComponent'
+import apiFetch  from '../components/ApiWrapper';
 
 const Home = () => {
-    const token = localStorage.getItem('token');
     const carouselItems = [
         {
             image: '/achtergrondFoto1.png',
@@ -26,9 +26,7 @@ const Home = () => {
     const [songs, setSongs] = useState([])
 
     useEffect(() => {
-        fetch('https://radio-vrijstaande-pilaster.runasp.net/api/songs/top5',
-        { headers: { "Authorization": `Bearer ${token}` } }
-        )
+        apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/songs/top5')
             .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => {

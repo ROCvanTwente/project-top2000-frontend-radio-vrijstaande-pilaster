@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAlert } from '../components/AlertContext';
+import apiFetch  from '../components/ApiWrapper';
 
 const Editlied = () => {
     const navigate = useNavigate();
     const { isAdmin } = useAuth();
-    const token = localStorage.getItem('token');
     const { id } = useParams();
     const { showAlert } = useAlert();
 
@@ -24,7 +24,7 @@ const Editlied = () => {
 
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/${id}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {
@@ -60,11 +60,10 @@ const Editlied = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/edit/song/`, {
+            const res = await apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/edit/song/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(formData)
             });

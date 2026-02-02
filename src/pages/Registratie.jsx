@@ -66,10 +66,7 @@ export default function Registratie() {
                 return;
             }
 
-
-
             login(data.token);
-            localStorage.setItem("refreshToken", data.refreshToken);
             showAlert("Succesvol geregistreerd en ingelogd!", "success");
             navigate("/");
 

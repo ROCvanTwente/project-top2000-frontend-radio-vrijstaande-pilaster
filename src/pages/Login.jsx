@@ -23,7 +23,8 @@ export default function Login() {
             const response = await fetch("https://radio-vrijstaande-pilaster.runasp.net/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
+                credentials: 'include'
             });
 
             const data = await response.json();
@@ -32,8 +33,6 @@ export default function Login() {
                 throw new Error(data.message || "Inloggen mislukt. Controleer je gegevens.");
             }
 
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("refreshToken", data.refreshToken);
             login(data.token);
 
             showAlert("Succesvol ingelogd!", "success");

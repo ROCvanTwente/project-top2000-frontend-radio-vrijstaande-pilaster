@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import HeartComponent from "../components/HeartComponent";
 import { useAlert } from "../components/AlertContext";
 import { useAuth } from "../hooks/useAuth";
+import apiFetch  from '../components/ApiWrapper';
 
 const Playlist = () => {
     const [songs, setSongs] = useState([]);
@@ -10,19 +11,13 @@ const Playlist = () => {
     const { showAlert } = useAlert();
     const { isAuthenticated } = useAuth();
 
-    const token = localStorage.getItem("token");
-
     useEffect(() => {
         if (!isAuthenticated) {
             setLoading(false);
             return;
         }
 
-        fetch("https://radio-vrijstaande-pilaster.runasp.net/api/playlist", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
+        apiFetch("https://radio-vrijstaande-pilaster.runasp.net/api/playlist")
             .then(res => {
                 if (!res.ok) throw new Error("Failed to load playlist");
                 return res.json();

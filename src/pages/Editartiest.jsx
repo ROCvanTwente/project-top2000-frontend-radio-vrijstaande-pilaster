@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAlert } from '../components/AlertContext';
+import apiFetch  from '../components/ApiWrapper';
 
 const Editartiest = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
     const { isAdmin } = useAuth();
     const { showAlert } = useAlert();
 
@@ -23,7 +23,7 @@ const Editartiest = () => {
 
 
     useEffect(() => {
-        fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
+        apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
             .then(res => res.json())
             .then(data => {
 
@@ -58,11 +58,10 @@ const Editartiest = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://radio-vrijstaande-pilaster.runasp.net/api/edit/artist/`, {
+            const res = await apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/edit/artist/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(formData)
             });
