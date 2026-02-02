@@ -7,7 +7,7 @@ import fetchApi from "../components/ApiWrapper";
 
 const Layout = async () => {
     const token = localStorage.getItem("token");
-    await fetchApi('https://radio-vrijstaande-pilaster.runasp.net/api/api/auth/me', {
+    await fetchApi('https://radio-vrijstaande-pilaster.runasp.net/api/auth/me', {
         headers: {
             'Authorization': token ? `Bearer ${token}` : undefined,
         },
