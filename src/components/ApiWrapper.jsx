@@ -1,3 +1,6 @@
+const isRefreshing = false;
+let refreshPromise = null;
+
 export default async function apiFetch(url, options = {}, retry = true) {
     const token = localStorage.getItem("token");
 

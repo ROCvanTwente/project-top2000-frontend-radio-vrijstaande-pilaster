@@ -42,15 +42,12 @@ const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) =>
                 showAlert("Nummer toegevoegd aan je favorieten!", "success");
             }
 
-            // optimistic UI update
             setLiked(prev => !prev);
 
             if (!liked) {
-                // liking → pop
                 setAnimation("like");
                 setTimeout(() => setAnimation(null), 350);
             } else {
-                // unliking → shrink
                 setAnimation("unlike");
                 setTimeout(() => setAnimation(null), 250);
             }
