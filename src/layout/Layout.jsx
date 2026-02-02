@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import { AlertProvider } from "../components/AlertContext";
 import apiFetch from "../components/ApiWrapper";
 import { useAuth } from "../hooks/useAuth";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 
 const Layout = () => {
