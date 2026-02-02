@@ -11,7 +11,6 @@ const CompleteLijst = () => {
     // Function to fetch songs for a given year
     const fetchSongs = (year, order) => {
         apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs/fulllist?year=${year}${order ? `&order=${order}` : ''}`)
-            .then(res => res.json())
             .then(data => setSongs(data))
             .catch(err => console.error('API error:', err));
     };

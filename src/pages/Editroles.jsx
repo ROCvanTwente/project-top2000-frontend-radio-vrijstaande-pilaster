@@ -22,10 +22,6 @@ const Editroles = () => {
         apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/users', {
             method: 'GET',
         })
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch users');
-                return res.json();
-            })
             .then(data => setUsers(data))
             .catch(err => {
                 console.error(err);
@@ -36,16 +32,13 @@ const Editroles = () => {
 
     const assignRole = async (email, role) => {
         try {
-            const res = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
+            const data = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, role })
             });
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
 
             showAlert(data.message, 'success');
 
@@ -61,16 +54,13 @@ const Editroles = () => {
 
     const removeRole = async (email, role) => {
         try {
-            const res = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
+            const data = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, role })
             });
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
 
             showAlert(data.message, 'success');
 
@@ -102,15 +92,12 @@ const Editroles = () => {
         try {
             setDeleteLoading(true);
 
-            const res = await apiFetch(
+            const data = await apiFetch(
                 `https://radio-vrijstaande-pilaster.runasp.net/api/admin/delete-user/${userToDelete.id}`,
                 {
                     method: 'DELETE',
                 }
             );
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
 
             showAlert(data.message, 'success');
 

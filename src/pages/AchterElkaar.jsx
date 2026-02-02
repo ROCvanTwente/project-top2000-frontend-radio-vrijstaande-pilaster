@@ -18,10 +18,6 @@ export default function AchterElkaar() {
 
     useEffect(() => {
         apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/achterelkaar?year=${year}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
-                return res.json();
-            })
             .then(data => setEntries(data))
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));

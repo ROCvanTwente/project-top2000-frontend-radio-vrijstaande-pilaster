@@ -9,10 +9,7 @@ export default function EenKeer() {
 
     useEffect(() => {
         apiFetch("https://radio-vrijstaande-pilaster.runasp.net/api/stats/eenkeer")
-            .then(res => {
-                if (!res.ok) throw new Error("Kon one-timers niet laden");
-                return res.json();
-            })
+
             .then(data => setSongs(data))
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));

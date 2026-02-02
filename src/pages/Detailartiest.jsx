@@ -12,7 +12,6 @@ const Detailartiest = () => {
 
     useEffect(() => {
         apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/artists/${id}`)
-            .then(res => res.json())
             .then(data => {
                 setArtist(data);
                 setLoading(false);

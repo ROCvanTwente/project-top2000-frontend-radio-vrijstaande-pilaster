@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeartComponent from '../components/HeartComponent';
-import apiFetch  from '../components/ApiWrapper';
+import apiFetch from '../components/ApiWrapper';
 
 const PAGE_SIZE = 20;
 
@@ -12,7 +12,6 @@ const Overzichtnummers = () => {
 
     useEffect(() => {
         apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/songs?page=${page}`)
-        .then(res => res.json())
             .then(data => {
                 setSongs(data);
                 setHasNextPage(data.length === PAGE_SIZE);

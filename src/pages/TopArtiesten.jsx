@@ -11,10 +11,6 @@ export default function TopArtiesten() {
 
     useEffect(() => {
         apiFetch(`https://radio-vrijstaande-pilaster.runasp.net/api/stats/topartiesten?year=${year}&take=${limit}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Kon topartiesten niet laden");
-                return res.json();
-            })
             .then(data => setArtists(data))
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));
