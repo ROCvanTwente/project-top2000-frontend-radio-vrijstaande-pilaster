@@ -1,5 +1,5 @@
 export default async function refreshAccessToken() {
-    const refreshToken = authStore.getRefreshToken();
+    const refreshToken = localStorage.getItem("refreshToken");
 
     const response = await fetch("/api/auth/refresh-token", {
         method: "POST",
@@ -10,6 +10,8 @@ export default async function refreshAccessToken() {
     if (!response.ok) return false;
 
     const data = await response.json();
-    authStore.setTokens(data.token, data.refreshToken);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    window.dispatchEvent(new Event("authChange"));
     return true;
 }

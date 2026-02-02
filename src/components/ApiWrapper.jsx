@@ -31,7 +31,9 @@ export default async function apiFetch(url, options = {}, retry = true) {
 
     if (!success) {
         localStorage.removeItem("token");
-        throw new Error("Session expired");
+        localStorage.removeItem("refreshToken");
+        window.dispatchEvent(new Event("authChange"));
+        return null; // act as anonymous
     }
 
     const newToken = localStorage.getItem("token");
