@@ -15,7 +15,7 @@ const Layout = () => {
             try {
                 await apiFetch("/api/auth/me");
             } catch {
-                logout(); // 👈 single source of truth
+                logout();
             } finally {
                 setAuthChecked(true);
             }
@@ -30,7 +30,7 @@ const Layout = () => {
 
 
     if (!authChecked) {
-        return null; // or spinner
+        return null;
     }
 
     return (
