@@ -66,9 +66,6 @@ const Editlied = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            if (!res.ok) {
-                throw new Error('Failed to update song');
-            }
 
             showAlert('Song updated successfully.', 'success');
             navigate(`/detaillied/${id}`);
