@@ -1,16 +1,19 @@
-# React + Vite
+In dit project gaan wij de website van de TOP2000 namaken. 
+Dit doen wij voor de frontend met Bootstrap, JavaScript met een React framework.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Belangrijke dingen voor in de frontend
+- Informatie word opgehaald door het gebruik van een API
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Gebruikers kunnen makkelijk navigeren over de pagina doormiddel van de navbar, verder beschikt de website over 
+- Statistieken pagina
+- Geschiedenis pagina
+- Contact pagina
+- FAQ pagina
+- TOP2000 lijst pagina
+- Overzicht artiest pagina
+- Overzicht liedjes pagina
+- Login en registratie pagina
+- Artiest detail pagina
+- Liedje detail pagina
+- Edit pagina(Alleen admin)
+- Playlist pagina(Alleen ingelogde gebruiker)
