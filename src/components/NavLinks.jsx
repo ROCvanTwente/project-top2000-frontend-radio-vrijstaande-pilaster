@@ -62,7 +62,7 @@ export default function NavLinks() {
                         }}
                         className="nav-link text-white text-decoration-underline fw-bold btn btn-link p-1"
                     >
-                        Log out
+                        Log uit
                     </button>
                 ) : (
                     <button className="nav-link fw-bold btn btn-link p-1">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAlert } from '../components/AlertContext';
-import apiFetch  from '../components/ApiWrapper';
+import apiFetch from '../components/ApiWrapper';
 
 const Editroles = () => {
     const navigate = useNavigate();
@@ -25,20 +25,23 @@ const Editroles = () => {
             .then(data => setUsers(data))
             .catch(err => {
                 console.error(err);
-                showAlert('Failed to load users', 'danger');
+                showAlert('Gebruikers laden mislukt', 'danger');
             })
             .finally(() => setLoading(false));
     }, [showAlert]);
 
     const assignRole = async (email, role) => {
         try {
-            const data = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, role })
-            });
+            const data = await apiFetch(
+                'https://radio-vrijstaande-pilaster.runasp.net/api/admin/assign-role',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, role })
+                }
+            );
 
             showAlert(data.message, 'success');
 
@@ -48,19 +51,22 @@ const Editroles = () => {
                 )
             );
         } catch (err) {
-            showAlert(err.message || 'Failed to assign role', 'danger');
+            showAlert(err.message || 'Rol toewijzen mislukt', 'danger');
         }
     };
 
     const removeRole = async (email, role) => {
         try {
-            const data = await apiFetch('https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, role })
-            });
+            const data = await apiFetch(
+                'https://radio-vrijstaande-pilaster.runasp.net/api/admin/remove-role',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, role })
+                }
+            );
 
             showAlert(data.message, 'success');
 
@@ -70,7 +76,7 @@ const Editroles = () => {
                 )
             );
         } catch (err) {
-            showAlert(err.message || 'Failed to remove role', 'danger');
+            showAlert(err.message || 'Rol verwijderen mislukt', 'danger');
         }
     };
 
@@ -80,12 +86,11 @@ const Editroles = () => {
         setShowDeleteModal(true);
     };
 
-
     const confirmDeleteUser = async () => {
         if (!userToDelete) return;
 
         if (confirmEmail !== userToDelete.email) {
-            showAlert('Email matcht niet. Verwijderen afgebroken.', 'danger');
+            showAlert('E-mailadres komt niet overeen. Verwijderen geannuleerd.', 'danger');
             return;
         }
 
@@ -112,27 +117,27 @@ const Editroles = () => {
     };
 
     if (!isAdmin) {
-        return <div className="container mt-5">Access denied</div>;
+        return <div className="container mt-5">Toegang geweigerd</div>;
     }
 
     if (loading) {
-        return <div className="container mt-5">Loading…</div>;
+        return <div className="container mt-5">Laden…</div>;
     }
 
     return (
         <div style={{ backgroundColor: 'rgb(254, 243, 212)', minHeight: '90vh' }}>
             <div className="container py-5">
-                <h2 className="mb-4">User Role Management</h2>
+                <h2 className="mb-4">Gebruikersrollen beheren</h2>
 
                 <div className="mb-3">
-                    <label className="form-label">Role to assign</label>
+                    <label className="form-label">Rol om toe te wijzen</label>
                     <select
                         className="form-select"
                         value={selectedRole}
                         onChange={(e) => setSelectedRole(e.target.value)}
                     >
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
+                        <option value="User">Gebruiker</option>
+                        <option value="Admin">Administrator</option>
                     </select>
                 </div>
 
@@ -145,7 +150,7 @@ const Editroles = () => {
                             <div>
                                 <strong>{user.email}</strong>
                                 <div className="text-muted small">
-                                    Roles: {user.roles.join(', ') || 'None'}
+                                    Rollen: {user.roles.join(', ') || 'Geen'}
                                 </div>
                             </div>
 
@@ -154,7 +159,7 @@ const Editroles = () => {
                                     className="btn btn-sm btn-success"
                                     onClick={() => assignRole(user.email, selectedRole)}
                                 >
-                                    Assign
+                                    Toewijzen
                                 </button>
 
                                 {user.roles.map(role => (
@@ -163,7 +168,7 @@ const Editroles = () => {
                                         className="btn btn-sm btn-primary"
                                         onClick={() => removeRole(user.email, role)}
                                     >
-                                        Remove {role}
+                                        Verwijder {role}
                                     </button>
                                 ))}
 
@@ -171,9 +176,8 @@ const Editroles = () => {
                                     className="btn btn-sm btn-danger"
                                     onClick={() => openDeleteModal(user)}
                                 >
-                                    Delete User
+                                    Gebruiker verwijderen
                                 </button>
-
                             </div>
                         </div>
                     ))}
@@ -183,7 +187,7 @@ const Editroles = () => {
                     className="btn btn-secondary mt-4"
                     onClick={() => navigate(-1)}
                 >
-                    Back
+                    Terug
                 </button>
 
                 {showDeleteModal && userToDelete && (
@@ -191,7 +195,7 @@ const Editroles = () => {
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content border-danger">
                                 <div className="modal-header bg-danger text-white">
-                                    <h5 className="modal-title">Confirm User Deletion</h5>
+                                    <h5 className="modal-title">Bevestig verwijderen gebruiker</h5>
                                     <button
                                         type="button"
                                         className="btn-close btn-close-white"
@@ -200,13 +204,12 @@ const Editroles = () => {
                                 </div>
 
                                 <div className="modal-body">
-
                                     <p>
-                                        This action <strong>cannot be undone</strong>.
+                                        Deze actie <strong>kan niet ongedaan worden gemaakt</strong>.
                                     </p>
 
                                     <p className="mb-2">
-                                        To confirm deletion, type the email address below:
+                                        Typ het e-mailadres hieronder om te bevestigen:
                                     </p>
 
                                     <div className="alert alert-warning py-2">
@@ -216,14 +219,14 @@ const Editroles = () => {
                                     <input
                                         type="email"
                                         className="form-control"
-                                        placeholder="Re-type user email"
+                                        placeholder="E-mailadres opnieuw invoeren"
                                         value={confirmEmail}
                                         onChange={(e) => setConfirmEmail(e.target.value)}
                                     />
 
                                     {confirmEmail && confirmEmail !== userToDelete.email && (
                                         <div className="text-danger small mt-2">
-                                            Email does not match
+                                            E-mailadres komt niet overeen
                                         </div>
                                     )}
                                 </div>
@@ -234,7 +237,7 @@ const Editroles = () => {
                                         onClick={() => setShowDeleteModal(false)}
                                         disabled={deleteLoading}
                                     >
-                                        Cancel
+                                        Annuleren
                                     </button>
 
                                     <button
@@ -245,21 +248,18 @@ const Editroles = () => {
                                         }
                                         onClick={confirmDeleteUser}
                                     >
-                                        {deleteLoading ? 'Deleting…' : 'Delete User'}
+                                        {deleteLoading ? 'Bezig met verwijderen…' : 'Gebruiker verwijderen'}
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        {/* backdrop */}
+                        {/* achtergrond */}
                         <div className="modal-backdrop fade show z-n1"></div>
                     </div>
                 )}
-
             </div>
         </div>
-
-
     );
 };
 
