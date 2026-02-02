@@ -1,7 +1,7 @@
 export default async function refreshAccessToken() {
     const refreshToken = localStorage.getItem("refreshToken");
 
-    const response = await fetch("/api/auth/refresh-token", {
+    const response = await fetch("https://radio-vrijstaande-pilaster.runasp.net/api/auth/refresh-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refreshToken })
