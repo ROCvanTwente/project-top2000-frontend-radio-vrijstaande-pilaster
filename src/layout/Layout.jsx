@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { AlertProvider } from "../components/AlertContext";
 import apiFetch from "../components/ApiWrapper";
+import { useAuth } from "../hooks/useAuth";
 
 const Layout = () => {
     const { logout } = useAuth();
@@ -14,7 +15,7 @@ const Layout = () => {
             try {
                 await apiFetch("/api/auth/me");
             } catch {
-                logout(); // 👈 single source of truth
+                logout();
             } finally {
                 setAuthChecked(true);
             }
@@ -29,7 +30,7 @@ const Layout = () => {
 
 
     if (!authChecked) {
-        return null; // or spinner
+        return null;
     }
 
     return (
