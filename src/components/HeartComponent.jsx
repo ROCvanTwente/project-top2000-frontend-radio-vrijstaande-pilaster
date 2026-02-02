@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAlert } from "./AlertContext";
 import { useAuth } from '../hooks/useAuth';
 import '../../CSS/HeartComponent.css';
-import { apiFetch } from './ApiWrapper';
+import apiFetch from './ApiWrapper';
 
 const HeartComponent = ({ songId, initialLiked = false, onError, size = 32 }) => {
     const [liked, setLiked] = useState(initialLiked);

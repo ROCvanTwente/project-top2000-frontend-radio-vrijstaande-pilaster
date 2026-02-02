@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import HeartComponent from "../components/HeartComponent";
 import { useAlert } from "../components/AlertContext";
 import { useAuth } from "../hooks/useAuth";
-import { apiFetch } from '../components/ApiWrapper';
+import apiFetch  from '../components/ApiWrapper';
 
 const Playlist = () => {
     const [songs, setSongs] = useState([]);

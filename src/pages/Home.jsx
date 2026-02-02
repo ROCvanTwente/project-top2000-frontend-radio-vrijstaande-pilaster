@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Carousel from 'bootstrap/js/dist/carousel'
 import { Link } from 'react-router-dom'
 import HeartComponent from '../components/HeartComponent'
-import { apiFetch } from '../components/ApiWrapper';
+import apiFetch  from '../components/ApiWrapper';
 
 const Home = () => {
     const carouselItems = [

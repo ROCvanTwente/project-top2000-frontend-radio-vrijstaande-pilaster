@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import HeartComponent from '../components/HeartComponent';
-import { apiFetch } from '../components/ApiWrapper';
+import apiFetch  from '../components/ApiWrapper';
 
 import {
     Chart as ChartJS,

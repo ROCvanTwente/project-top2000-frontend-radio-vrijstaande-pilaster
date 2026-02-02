@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { apiFetch } from '../components/ApiWrapper';
+import apiFetch  from '../components/ApiWrapper';
 
 export default function AlleEdities() {
     const [songs, setSongs] = useState([]);

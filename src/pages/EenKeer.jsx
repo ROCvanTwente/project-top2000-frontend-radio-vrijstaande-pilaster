@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { apiFetch } from '../components/ApiWrapper';
+import apiFetch  from '../components/ApiWrapper';
 
 export default function EenKeer() {
     const [songs, setSongs] = useState([]);
