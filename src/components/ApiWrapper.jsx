@@ -1,4 +1,4 @@
-const isRefreshing = false;
+let isRefreshing = false;
 let refreshPromise = null;
 
 export default async function apiFetch(url, options = {}, retry = true) {
