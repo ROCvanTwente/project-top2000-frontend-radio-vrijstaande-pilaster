@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { useAlert } from "./components/AlertContext";
+import { useAlert } from "./AlertContext";
 import { useLocation } from "react-router-dom";
 
 
