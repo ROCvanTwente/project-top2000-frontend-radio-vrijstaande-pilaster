@@ -66,7 +66,7 @@ export default function Registratie() {
                 return;
             }
 
-            login(data.token);
+            login(data.token, data.refreshToken);
             showAlert("Succesvol geregistreerd en ingelogd!", "success");
             navigate("/");
 
